@@ -56,7 +56,7 @@ function Signup(){
                         type={"password"}
                     />
                 </div>
-                <div >
+                <div style={{justifyContent:"end",display:"flex"}} >
                     <Button
                      size={'large'} 
                      variant="contained"
