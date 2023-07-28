@@ -21,7 +21,7 @@ function Signin(){
         }}>
             <Card variant="outlined"
                 style={{
-                    width: 350,
+                    width: 300,
                     padding:20,
                     borderRadius:20,
                     boxShadow:"0px 0px 3px black"
@@ -35,7 +35,6 @@ function Signin(){
                         variant="outlined"
                     />
                 </div>
-                {/* <br /> */}
                 <div style={{marginBottom :10}}>
                     <TextField
                         fullWidth={true}
@@ -45,7 +44,10 @@ function Signin(){
                     />
                 </div>
                 <div style={{justifyContent:"end",display:"flex"}} >
-                    <Button size='small' variant="contained">Signin</Button>
+                    <Button 
+                    size='large' 
+                    variant="contained" 
+                    fullWidth={true}> Login</Button>
                 </div>
 
             </Card>

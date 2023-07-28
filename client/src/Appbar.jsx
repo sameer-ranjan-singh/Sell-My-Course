@@ -1,6 +1,8 @@
 import { Typography } from "@mui/material"
 import Button from '@mui/material/Button';
 
+
+
 function  Appbar(){
   return (
     <>
@@ -19,12 +21,20 @@ function  Appbar(){
          <div style={{
           marginRight:10
          }}>
-           <Button  variant={"contained"}>Signup</Button>
+           <Button  
+           variant={"contained"}
+           
+           >Sign up</Button>
          </div>
          <div style={{
           marginRight:10
          }}>
-           <Button  variant={"contained"}>Signin</Button>
+           <Button  
+           variant={"contained"}
+           onClick={() => {
+            
+           }}
+           >Login</Button>
          </div>
       </div>
     </div>

@@ -14,6 +14,7 @@ function Signup(){
             justifyContent: "center",
             paddingTop:150,
             marginBottom:10,
+            
         }}>
             
             <Typography variant={"h6"}>
@@ -26,7 +27,7 @@ function Signup(){
         }}>
             <Card variant="outlined"
                 style={{
-                    width: 350,
+                    width: 300,
                     padding:20,
                     borderRadius:20,
                     boxShadow:"0px 0px 3px black"
@@ -55,19 +56,20 @@ function Signup(){
                         type={"password"}
                     />
                 </div>
-                <div style={{justifyContent:"end",display:"flex"}} >
+                <div >
                     <Button
-                     size='small' 
+                     size={'large'} 
                      variant="contained"
+                     fullWidth={true}
                      onClick={()=>{
                         function callback2(data){
-                            localStorage.setItem("token","data.token")
+                            localStorage.setItem("token",data.token)
                             console.log(data)
                         }
                         function callback1(res){
                             res.json().then(callback2)
                         }
-                        fetch("https://localhost:3000/admin/signup",{
+                        fetch("http://localhost:3000/admin/signup",{
                             method:"POST",
                             body:JSON.stringify({
                                 username : username,
@@ -79,7 +81,7 @@ function Signup(){
                         })
                         .then(callback1)
                      }}
-                     >Signup</Button>
+                     >Create Account</Button>
                 </div>
 
             </Card>
