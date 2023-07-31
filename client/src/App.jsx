@@ -3,7 +3,8 @@ import Appbar  from "./Appbar";
 import Signup from "./Signup"
 import Signin from "./Signin";
 import AddCourse from "./AddCourse"
-// import './App.css'
+import Courses from "./Courses";
+import Course from "./Course"
 
 function App(){
  return (
@@ -11,12 +12,14 @@ function App(){
       width:"100vw",
       height:"100vh",
       backgroundColor:"#eeeeee",
-         }}>
-          <Appbar/>
+  }}>
+          
     <Router>
+     <Appbar/>
      <Routes>
        <Route path="/addcourse" element={<AddCourse/>}/>
-       <Route path="/" element={<Signup/>}/>
+       <Route path="/courses" element={<Courses/>}/>
+       <Route path="/course/:courseId" element={<Course/>}/>
        <Route path="/Signup" element={<Signup/>}/>
        <Route path="/Signin" element={<Signin/>}/>
      </Routes>

@@ -1,11 +1,12 @@
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import {Card, Typography} from '@mui/material';
+import {Card} from '@mui/material';
 import { useState } from 'react';
 
 function AddCourse(){
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
+    const [image, setImage] = useState("")
     return <div style={{
         display:"flex",
         justifyContent:'center',
@@ -16,7 +17,7 @@ function AddCourse(){
                     width: 350,
                     padding:20,
                     borderRadius:20,
-                    boxShadow:"0px 0px 3px black"
+                    boxShadow:"0px 0px 10px black"
                 }}
             >
         <div style={{marginBottom :20}}>
@@ -30,7 +31,7 @@ function AddCourse(){
             variant="outlined"
            />
         </div>
-        <div style={{marginBottom :10}}>
+        <div style={{marginBottom :20}}>
             <TextField
                 onChange={(e) =>{
                     setDescription(e.target.value)   
@@ -41,14 +42,26 @@ function AddCourse(){
             variant="outlined"
             />
         </div>
+        <div style={{marginBottom :20}}>
+         <TextField
+                onChange={(e) =>{
+                    setImage(e.target.value)   
+                }}
+            fullWidth={true}
+            id="outlined-basic"
+            label="Image Link"
+            variant="outlined"
+            />
+        </div>   
         <div style={{justifyContent:"end",display:"flex"}} >
             <Button
               size={'medium'} 
               variant={"contained"}
               onClick = {() => {
                 function callback2(data){
-                    localStorage.setItem("token",data.token)
-                    console.log(data)
+                    alert("Course Created with token : "+ data.token)
+                   
+                    // localStorage.setItem("token",data.token)  :Important bug- resetting local storage , search and read about it . 
                 }
                 function callback1(res){
                     res.json().then(callback2)
@@ -58,7 +71,7 @@ function AddCourse(){
                     body:JSON.stringify({
                         title: title,
                         description: description,
-                        imageLink: "",
+                        imageLink: image,
                         published : true
                     }),
                     headers:{
