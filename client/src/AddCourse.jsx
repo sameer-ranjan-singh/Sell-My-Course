@@ -2,22 +2,28 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import {Card} from '@mui/material';
 import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import * as React from 'react';
 
 function AddCourse(){
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
-    const [image, setImage] = useState("")
+    const [image, setImage] = useState("https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Q291cnNlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60")
+    const [price,setPrice] = useState("")
+
+    const navigate = useNavigate()
+    
     return <div style={{
         display:"flex",
         justifyContent:'center',
-        paddingTop:100
+        paddingTop:70
     }}>
         <Card variant={"outlined"}
                 style={{
-                    width: 350,
+                    width: 300,
                     padding:20,
-                    borderRadius:20,
-                    boxShadow:"0px 0px 10px black"
+                    borderRadius:0,
+                    boxShadow:"0px 2px 10px black"
                 }}
             >
         <div style={{marginBottom :20}}>
@@ -53,15 +59,27 @@ function AddCourse(){
             variant="outlined"
             />
         </div>   
+
+        <div style={{marginBottom :20}}>
+         <TextField
+                onChange={(e) =>{
+                    setPrice(e.target.value)   
+                }}
+            fullWidth={true}
+            id="outlined-basic"
+            label="$$ Price"
+            variant="outlined"
+            />
+        </div>          
+
         <div style={{justifyContent:"end",display:"flex"}} >
             <Button
               size={'medium'} 
               variant={"contained"}
               onClick = {() => {
                 function callback2(data){
-                    alert("Course Created with token : "+ data.token)
-                   
-                    // localStorage.setItem("token",data.token)  :Important bug- resetting local storage , search and read about it . 
+                   alert("Course Created with token : "+ data.token)
+                   navigate("/courses")
                 }
                 function callback1(res){
                     res.json().then(callback2)
@@ -71,6 +89,7 @@ function AddCourse(){
                     body:JSON.stringify({
                         title: title,
                         description: description,
+                        price : price,
                         imageLink: image,
                         published : true
                     }),
