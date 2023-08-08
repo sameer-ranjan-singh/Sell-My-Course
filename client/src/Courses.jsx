@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import { Card,Typography } from "@mui/material"
-
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
@@ -11,6 +10,7 @@ import Stack from '@mui/material/Stack';
 import LinearProgress from '@mui/material/LinearProgress';
 
 import Switch from '@mui/material/Switch';
+
 
 function Courses() {
     const [courses, setCourses] = useState([])
@@ -30,9 +30,11 @@ function Courses() {
                 "Authorization": "Bearer " + localStorage.getItem("token")
             }
         }).then(callback1)
+
+
     }, [])
 
-    return <> <hr style={{ margin: 0 }} />
+    return <> 
         <div style={{
             position: "relative"
         }}>
@@ -57,7 +59,7 @@ function Courses() {
                 display: "flex",
                 flexWrap: "wrap-reverse",
                 justifyContent: "center",
-                backgroundColor: "#e9edc9",
+                // backgroundColor: "#e9edc9",
             }}>
 
                 {courses.length === 0 ? ( // Check if courses array is empty

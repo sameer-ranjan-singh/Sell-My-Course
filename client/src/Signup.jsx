@@ -2,7 +2,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import {Card, Typography} from '@mui/material';
 import { useState } from 'react';
-
+import axios from "axios"
 
 function Signup(){
 let [username,setUsername] = useState("")
@@ -70,26 +70,36 @@ justifyContent:'center'
                 transition: "transform 0.2s",
                 fontFamily: `"Gloock", "Gloock Placeholder", serif`,
             }}
-            onClick={()=>{
-            function callback2(data){
+            onClick={async ()=>{
+                const response = await axios.post("http://localhost:3000/admin/signup",{
+                    username:username,
+                    passsword:password
+                })
+                const data =response.data
                 localStorage.setItem("token",data.token)
-                window.location = "/courses"
-            }
-            function callback1(res){
-                res.json().then(callback2)
-                typeof(res.json())
-            }
-            fetch("http://localhost:3000/admin/signup",{
-                method:"POST",
-                body:JSON.stringify({
-                    username : username,
-                    password: password
-                }),
-                headers:{
-                    "Content-Type":"application/json"
-                }
-            })
-            .then(callback1)
+                window.location = "/courses" 
+
+                
+            // function callback2(data){
+            //     localStorage.setItem("token",data.token)
+            //     window.location = "/courses"
+            // }
+            // function callback1(res){
+            //     res.json().then(callback2)
+            // }
+            // fetch("http://localhost:3000/admin/signup",{
+            //     method:"POST",
+            //     body:JSON.stringify({
+            //         username : username,
+            //         password: password
+            //     }),
+            //     headers:{
+            //         "Content-Type":"application/json"
+            //     }
+            // })
+            // .then(callback1)
+
+
             }}
             >Create Account</Button>
     </div>

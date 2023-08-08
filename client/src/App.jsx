@@ -17,7 +17,7 @@ function App(){
     <Router>
        <Appbar/>
        <Routes>
-          <Route path="/" element ={<Landing/>}></Route>
+          <Route path="/" element = {<Landing/>}></Route>
           <Route path="/addcourse" element={<AddCourse/>}/>
           <Route path="/courses" element={<Courses/>}/>
           <Route path="/course/:courseId" element={<Course/>}/>

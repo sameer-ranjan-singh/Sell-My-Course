@@ -4,6 +4,8 @@ import {Card} from '@mui/material';
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import * as React from 'react';
+import axios from "axios"
+
 
 function AddCourse(){
     const [title, setTitle] = useState("")
@@ -76,29 +78,47 @@ function AddCourse(){
             <Button
               size={'medium'} 
               variant={"contained"}
-              onClick = {() => {
-                function callback2(data){
-                   alert("Course Created with token : "+ data.token)
-                   navigate("/courses")
-                }
-                function callback1(res){
-                    res.json().then(callback2)
-                }
-                fetch("http://localhost:3000/admin/courses",{
-                    method:"POST",
-                    body:JSON.stringify({
+              onClick = {async () => {
+                // function callback2(data){
+                //    alert("Course Created with token : "+ data.token)
+                //    navigate("/courses")
+                // }
+                // function callback1(res){
+                //     res.json().then(callback2)
+                // }
+                // fetch("http://localhost:3000/admin/courses",{
+                //     method:"POST",
+                //     body:JSON.stringify({
+                //         title: title,
+                //         description: description,
+                //         price : price,
+                //         imageLink: image,
+                //         published : true
+                //     }),
+                //     headers:{
+                //         "Content-Type": "application/json",
+                //         "Authorization": "Bearer " + localStorage.getItem("token")
+                //     }
+                // })
+                // .then(callback1)
+
+                const response = await axios.post(
+                    "http://localhost:3000/admin/courses",
+                    {
                         title: title,
                         description: description,
                         price : price,
                         imageLink: image,
                         published : true
-                    }),
+                    },
+                    {
                     headers:{
-                        "Content-Type": "application/json",
                         "Authorization": "Bearer " + localStorage.getItem("token")
                     }
                 })
-                .then(callback1)
+                const data =response.data
+                alert("Course CREATED Successfully !")
+                navigate("/courses")
               }}
             >Add Course</Button>
         </div>

@@ -2,14 +2,13 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import {Card, Typography} from '@mui/material';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import * as React from 'react';
-
+import axios from "axios"
 
 function Signin(){
     let [username,setUsername] = useState("")
     let [password,setPassword] = useState("")
-    let navigate = useNavigate()
+
     return <div>
         <div style={{
             display: "flex",
@@ -70,31 +69,43 @@ function Signin(){
                 transition: "transform 0.2s",
                 fontFamily: `"Gloock", "Gloock Placeholder", serif`,
             }}
-            onClick={()=>{
-            function callback2(data){
-                localStorage.setItem("token",data.token)
-                window.location = "/courses"
-            }
-            function callback1(res){
-                if(res.status == 403){
-                    console.log("navigate to signin")
-                    window.location = "/signin"
+            onClick={async ()=>{
+            // function callback2(data){
+            //     localStorage.setItem("token",data.token)
+            //     window.location = "/courses"
+            // }
+            // function callback1(res){
+            //     if(res.status == 403){
+            //         console.log("navigate to signin")
+            //         window.location = "/signin"
 
-                }else if(res.status == 200){
-                    res.json().then(callback2)
-                }
+            //     }else if(res.status == 200){
+            //         res.json().then(callback2)
+            //     }
                 
-            }
-            fetch("http://localhost:3000/admin/login",{
-                method:"POST",
-                headers:{
-                    "Content-Type":"application/json",
-                    username : username,
-                    password : password
+            // }
+            // fetch("http://localhost:3000/admin/login",{
+            //     method:"POST",
+            //     headers:{
+            //         "Content-Type":"application/json",
+            //         username : username,
+            //         password : password
                     
+            //     }
+            // })
+            // .then(callback1)
+
+
+            const response = await axios.post("http://localhost:3000/admin/login",null,{
+                headers:{
+                    username:username,
+                    password:password  
                 }
             })
-            .then(callback1)
+            const data = response.data
+            localStorage.setItem("token",data.token)
+            window.location = "/courses"
+
             }}
             >Login</Button>
                 </div>

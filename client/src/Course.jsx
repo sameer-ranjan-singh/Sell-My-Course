@@ -10,6 +10,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
 import IconButton from '@mui/material/IconButton';
 import Fingerprint from '@mui/icons-material/Fingerprint';
+import axios from "axios"
 
 function Course() {
 
@@ -55,7 +56,7 @@ function Course() {
         <div style={{ display: "flex", justifyContent: "center" }}>
             <Button
                 variant=""
-                style={{ padding: "0px 10px 0px 0px" }}
+                style={{ padding: "0px 10px 0px 0px",color:"#1976d2" }}
                 onClick={() => {
                     navigate("/courses")
                 }}
@@ -157,11 +158,40 @@ function UpdateCard(props) {
             <div style={{ justifyContent: "space-between", display: "flex" }} >
                 <Button
                     variant="outlined" startIcon={<DeleteIcon />}
-                    onClick={() => {
+                    onClick={async () => {
                         const confirmDelete = prompt("Type 'delete' to confirm deletion:")
                         if (confirmDelete === "delete") {
-                            function callback2(data) {
-                                let empty = []
+                            // function callback2(data) {
+                            //     let empty = []
+                            //     let deletedCourse = props.courses.find((c) => c._id == course._id)
+                            //     let coursesAfterDeletion = props.courses.filter((c) => c._id !== course._id)
+                            //     empty.push(coursesAfterDeletion)
+                            //     props.setCourses(empty)
+
+                            //     console.log(data)
+                            //     navigate("/courses")
+
+                            // }
+
+                            // function callback1(res) {
+                            //     res.json().then(callback2)
+                            // }
+
+                            // fetch("http://localhost:3000/admin/courses/" + course._id, {
+                            //     method: "DELETE",
+                            //     headers: {
+                            //         "Content-Type": "application/json",
+                            //         "Authorization": "Bearer " + localStorage.getItem("token")
+                            //     }
+                            // }).then(callback1)
+                            const response = await axios.delete(`http://localhost:3000/admin/courses/${course._id}`,
+                            {
+                                headers: {
+                                    "Authorization": "Bearer " + localStorage.getItem("token")
+                                }
+                            })
+                            const data = response.data
+                            let empty = []
                                 let deletedCourse = props.courses.find((c) => c._id == course._id)
                                 let coursesAfterDeletion = props.courses.filter((c) => c._id !== course._id)
                                 empty.push(coursesAfterDeletion)
@@ -169,22 +199,9 @@ function UpdateCard(props) {
 
                                 console.log(data)
                                 navigate("/courses")
-
-                            }
-
-                            function callback1(res) {
-                                res.json().then(callback2)
-                            }
-
-                            fetch("http://localhost:3000/admin/courses/" + course._id, {
-                                method: "DELETE",
-                                headers: {
-                                    "Content-Type": "application/json",
-                                    "Authorization": "Bearer " + localStorage.getItem("token")
-                                }
-                            }).then(callback1)
+                            
                         } else {
-                            alert(" Failed to Delete ")
+                            alert("Incorrect (delete) ! Failed to Delete ")
                         }
 
                     }}
@@ -193,9 +210,61 @@ function UpdateCard(props) {
                 <Button
                     size={'medium'}
                     variant="contained" endIcon={<SendIcon />}
-                    onClick={() => {
-                        function callback2(data) {
-                            alert("Course Updated Successfully")
+                    onClick={async () => {
+                        // function callback2(data) {
+                        //     let updatedCourses = []
+                        //     for (let i = 0; i < props.courses.length; i++) {
+                        //         if (props.courses[i]._id == course._id) {
+                        //             updatedCourses.push({
+                        //                 _id: course._id,
+                        //                 title: title,
+                        //                 description: description,
+                        //                 imageLink: image,
+                        //                 price: price,
+                        //                 published: published
+                        //             })
+                        //         } else {
+                        //             updatedCourses.push(props.courses[i])
+                        //         }
+                        //     }
+                        //     props.setCourses(updatedCourses)
+                        //     alert("Course updated successfully")
+                        //     navigate("/course/" + `${course._id}`)
+
+                        // }
+                        // function callback1(res) {
+                        //     res.json().then(callback2)
+                        // }
+                        // fetch("http://localhost:3000/admin/courses/" + course._id, {
+                        //     method: "PUT",
+                        //     body: JSON.stringify({
+                        //         title: title,
+                        //         description: description,
+                        //         price: price,
+                        //         imageLink: image,
+                        //         published: true,
+                        //     }),
+                        //     headers: {
+                        //         "Content-Type": "application/json",
+                        //         "Authorization": "Bearer " + localStorage.getItem("token")
+                        //     }
+                        // })
+                        //     .then(callback1)
+
+                            const response = await axios.put(`http://localhost:3000/admin/courses/${course._id}`,
+                            {
+                                title: title,
+                                description: description,
+                                price: price,
+                                imageLink: image,
+                                published: published
+                            },
+                            {
+                                headers: {
+                                    "Authorization": "Bearer " + localStorage.getItem("token")
+                                }
+                            })
+                            const data =response.data
                             let updatedCourses = []
                             for (let i = 0; i < props.courses.length; i++) {
                                 if (props.courses[i]._id == course._id) {
@@ -212,28 +281,12 @@ function UpdateCard(props) {
                                 }
                             }
                             props.setCourses(updatedCourses)
-                            alert("Course updated successfully")
-                            navigate("/course/" + `${course._id}`)
+                            alert("Course UPDATED successfully")
+                            setTimeout(()=>{
+                                navigate("/courses")
+                            },5000)
 
-                        }
-                        function callback1(res) {
-                            res.json().then(callback2)
-                        }
-                        fetch("http://localhost:3000/admin/courses/" + course._id, {
-                            method: "PUT",
-                            body: JSON.stringify({
-                                title: title,
-                                description: description,
-                                price: price,
-                                imageLink: image,
-                                published: true,
-                            }),
-                            headers: {
-                                "Content-Type": "application/json",
-                                "Authorization": "Bearer " + localStorage.getItem("token")
-                            }
-                        })
-                            .then(callback1)
+                            
                     }}
                 >Update</Button>
             </div>
@@ -261,20 +314,22 @@ function CourseCard(props) {
         borderRadius: 40,
         border: "1px solid black",
     }}>
-            <div>
-                <div style={{ display: "flex", textAlign: "center" }}>
-                    <img src={props.course.imageLink} alt="Course Image Unavailable"
-                        style={{ width: 250, height: 150, boxShadow: "0px 5px 8px  black", }}
-                    />
-                </div>
-                <Typography style={{ backgroundColor: '#CC5803' }} textAlign={"center"} variant="h6">{props.course.title}</Typography>
-                <Typography textAlign={"center"} variant="subtitle1">{props.course.description}</Typography>
-                <Typography textAlign={"center"} variant="h6">
-                    <span style={{ fontSize: "small", padding: 5, backgroundColor: "#bfd200" }}>Rs.{props.course.price}</span>
-                </Typography>
+        <div>
+            <div style={{ display: "flex", textAlign: "center" }}>
+                <img src={props.course.imageLink} alt="Course Image Unavailable"
+                    style={{ width: 250, height: 150, boxShadow: "0px 5px 8px  black", }}
+                />
             </div>
-        </Card>
-    </section>
+            <Typography style={{ backgroundColor: '#CC5803' }} textAlign={"center"} variant="h6">{props.course.title}</Typography>
+            <Typography textAlign={"center"} variant="subtitle1">{props.course.description}</Typography>
+            <Typography textAlign={"center"} variant="h6">
+                <span style={{ fontSize: "small", padding: 5, backgroundColor: "#bfd200" }}>
+                    Rs.{props.course.price}
+                </span>
+            </Typography>
+        </div>
+    </Card>
+  </section>
 }
 
 export default Course
