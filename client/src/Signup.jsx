@@ -78,28 +78,6 @@ justifyContent:'center'
                 const data =response.data
                 localStorage.setItem("token",data.token)
                 window.location = "/courses" 
-
-                
-            // function callback2(data){
-            //     localStorage.setItem("token",data.token)
-            //     window.location = "/courses"
-            // }
-            // function callback1(res){
-            //     res.json().then(callback2)
-            // }
-            // fetch("http://localhost:3000/admin/signup",{
-            //     method:"POST",
-            //     body:JSON.stringify({
-            //         username : username,
-            //         password: password
-            //     }),
-            //     headers:{
-            //         "Content-Type":"application/json"
-            //     }
-            // })
-            // .then(callback1)
-
-
             }}
             >Create Account</Button>
     </div>

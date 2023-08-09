@@ -1,5 +1,7 @@
 body{
     margin:0px;
-    background: linear-gradient(370.2deg, #ffffff 2.72%,  #d5c4e4 68.73% );
+    /* background: linear-gradient(370.2deg, #ffffff 2.72%,  #d5c4e4 68.73% ); */
+    background: radial-gradient(ellipse, #CC5803 1%,  #f0e0d5 68.73% );
+
     
 }

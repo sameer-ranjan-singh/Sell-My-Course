@@ -16,31 +16,19 @@ function Course() {
 
     let { courseId } = useParams()
     let navigate = useNavigate()
-    const [courses, setCourses] = useState([])
+    const [course, setCourse] = useState(null)
 
     useEffect(() => {
-        function callback2(data) {
-            console.log(data)
-            setCourses(data.courses)
-        }
-
-        function callback1(res) {
-            res.json().then(callback2)
-        }
-        fetch("http://localhost:3000/admin/courses/", {
-            method: "GET",
-            headers: {
+        axios.get("http://localhost:3000/admin/course/"+ courseId,
+        {
+            headers:{
                 "Authorization": "Bearer " + localStorage.getItem("token")
-            }
-        }).then(callback1)
-    }, [])
 
-    let course = null;
-    for (let i = 0; i < courses.length; i++) {
-        if (courses[i]._id == courseId) {
-            course = courses[i]
-        }
-    }
+            }
+        }).then(res =>{
+            setCourse(res.data.course)
+        })
+    }, [])
 
     if (!course) {
         return (
@@ -53,18 +41,18 @@ function Course() {
     return <>
         <hr style={{ margin: 0 }} />
 
-        <div style={{ display: "flex", justifyContent: "center" }}>
+        <div style={{ display: "flex", justifyContent: "center",marginTop:60 }}>
             <Button
                 variant=""
-                style={{ padding: "0px 10px 0px 0px",color:"#1976d2" }}
+                style={{ padding: "0px 10px 0px 0px",color:"#CC5803"}}
                 onClick={() => {
                     navigate("/courses")
                 }}
             >
-                <IconButton aria-label="fingerprint" color="primary">
+                <IconButton aria-label="fingerprint" color="success">
                     <Fingerprint />
                 </IconButton>
-                Home
+                H o m e
             </Button>
         </div>
 
@@ -76,23 +64,23 @@ function Course() {
             backgroundColor: "#1976d2",
             height: "auto",
             borderRadius: "20px 20px 0px 0px",
-            margin: 50,
+            margin: "10px 50px 50px 50px",
             padding: "20px 0px 50px 0px",
         }}>
-            <UpdateCard courses={courses} course={course} setCourses={setCourses} />
+            <UpdateCard  course={course} setCourse={setCourse} />
             <CourseCard course={course} />
         </div>
     </>
 }
 
-function UpdateCard(props) {
-    const course = props.course
+function UpdateCard({course,setCourse}) {
+    // const course = props.course
 
-    const [title, setTitle] = useState()
-    const [description, setDescription] = useState("")
-    const [image, setImage] = useState("")
-    const [price, setPrice] = useState("")
-    const [published, setPublished] = useState(true)
+    const [title, setTitle] = useState(course.title)
+    const [description, setDescription] = useState(course.description)
+    const [image, setImage] = useState(course.imageLink)
+    const [price, setPrice] = useState(course.price)
+    const [published, setPublished] = useState(course.published)
 
     const navigate = useNavigate()
 
@@ -113,6 +101,7 @@ function UpdateCard(props) {
             <Typography textAlign={"center"} variant="h6">Update Course Details</Typography>
             <div style={{ marginBottom: 20 }}>
                 <TextField
+                    value ={title}
                     onChange={(e) => {
                         setTitle(e.target.value)
                     }}
@@ -124,6 +113,7 @@ function UpdateCard(props) {
             </div>
             <div style={{ marginBottom: 20 }}>
                 <TextField
+                    value ={description}
                     onChange={(e) => {
                         setDescription(e.target.value)
                     }}
@@ -135,17 +125,19 @@ function UpdateCard(props) {
             </div>
             <div style={{ marginBottom: 20 }}>
                 <TextField
+                    value ={image}
                     onChange={(e) => {
                         setImage(e.target.value)
                     }}
                     fullWidth={true}
                     id="outlined-basic"
-                    label="Image Link"
+                    label="Paste image URL"
                     variant="outlined"
                 />
             </div>
             <div style={{ marginBottom: 20 }}>
                 <TextField
+                    value ={price}
                     onChange={(e) => {
                         setPrice(e.target.value)
                     }}
@@ -161,29 +153,7 @@ function UpdateCard(props) {
                     onClick={async () => {
                         const confirmDelete = prompt("Type 'delete' to confirm deletion:")
                         if (confirmDelete === "delete") {
-                            // function callback2(data) {
-                            //     let empty = []
-                            //     let deletedCourse = props.courses.find((c) => c._id == course._id)
-                            //     let coursesAfterDeletion = props.courses.filter((c) => c._id !== course._id)
-                            //     empty.push(coursesAfterDeletion)
-                            //     props.setCourses(empty)
-
-                            //     console.log(data)
-                            //     navigate("/courses")
-
-                            // }
-
-                            // function callback1(res) {
-                            //     res.json().then(callback2)
-                            // }
-
-                            // fetch("http://localhost:3000/admin/courses/" + course._id, {
-                            //     method: "DELETE",
-                            //     headers: {
-                            //         "Content-Type": "application/json",
-                            //         "Authorization": "Bearer " + localStorage.getItem("token")
-                            //     }
-                            // }).then(callback1)
+                           
                             const response = await axios.delete(`http://localhost:3000/admin/courses/${course._id}`,
                             {
                                 headers: {
@@ -191,14 +161,8 @@ function UpdateCard(props) {
                                 }
                             })
                             const data = response.data
-                            let empty = []
-                                let deletedCourse = props.courses.find((c) => c._id == course._id)
-                                let coursesAfterDeletion = props.courses.filter((c) => c._id !== course._id)
-                                empty.push(coursesAfterDeletion)
-                                props.setCourses(empty)
-
-                                console.log(data)
-                                navigate("/courses")
+                            console.log(data)
+                            navigate("/courses")
                             
                         } else {
                             alert("Incorrect (delete) ! Failed to Delete ")
@@ -211,46 +175,7 @@ function UpdateCard(props) {
                     size={'medium'}
                     variant="contained" endIcon={<SendIcon />}
                     onClick={async () => {
-                        // function callback2(data) {
-                        //     let updatedCourses = []
-                        //     for (let i = 0; i < props.courses.length; i++) {
-                        //         if (props.courses[i]._id == course._id) {
-                        //             updatedCourses.push({
-                        //                 _id: course._id,
-                        //                 title: title,
-                        //                 description: description,
-                        //                 imageLink: image,
-                        //                 price: price,
-                        //                 published: published
-                        //             })
-                        //         } else {
-                        //             updatedCourses.push(props.courses[i])
-                        //         }
-                        //     }
-                        //     props.setCourses(updatedCourses)
-                        //     alert("Course updated successfully")
-                        //     navigate("/course/" + `${course._id}`)
-
-                        // }
-                        // function callback1(res) {
-                        //     res.json().then(callback2)
-                        // }
-                        // fetch("http://localhost:3000/admin/courses/" + course._id, {
-                        //     method: "PUT",
-                        //     body: JSON.stringify({
-                        //         title: title,
-                        //         description: description,
-                        //         price: price,
-                        //         imageLink: image,
-                        //         published: true,
-                        //     }),
-                        //     headers: {
-                        //         "Content-Type": "application/json",
-                        //         "Authorization": "Bearer " + localStorage.getItem("token")
-                        //     }
-                        // })
-                        //     .then(callback1)
-
+                      
                             const response = await axios.put(`http://localhost:3000/admin/courses/${course._id}`,
                             {
                                 title: title,
@@ -265,28 +190,19 @@ function UpdateCard(props) {
                                 }
                             })
                             const data =response.data
-                            let updatedCourses = []
-                            for (let i = 0; i < props.courses.length; i++) {
-                                if (props.courses[i]._id == course._id) {
-                                    updatedCourses.push({
-                                        _id: course._id,
-                                        title: title,
-                                        description: description,
-                                        imageLink: image,
-                                        price: price,
-                                        published: published
-                                    })
-                                } else {
-                                    updatedCourses.push(props.courses[i])
-                                }
+                            let updatedCourses ={
+                                _id: course._id,
+                                title: title,
+                                description: description,
+                                imageLink: image,
+                                price: price,
+                                published: published
                             }
-                            props.setCourses(updatedCourses)
+                            setCourse(updatedCourses)
                             alert("Course UPDATED successfully")
                             setTimeout(()=>{
                                 navigate("/courses")
-                            },5000)
-
-                            
+                            },5000)                          
                     }}
                 >Update</Button>
             </div>

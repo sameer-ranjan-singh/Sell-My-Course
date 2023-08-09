@@ -23,7 +23,6 @@ function Appbar() {
     function callback2(data) {
       if (data.username) {
         setUserEamil(data.username)
-        // setIsloading(false)
       }
     }
     function callback1(res) {
@@ -43,32 +42,32 @@ function Appbar() {
     const handleDarkModeToggle = () => {
       setIsDarkMode((prevMode) => !prevMode);
       // Toggle body background color to black
-      document.body.style.background = isDarkMode ? "linear-gradient(370.2deg, #ffffff 2.72%,  #d5c4e4 68.73% )" : "#000000";
+      document.body.style.background = isDarkMode ? "radial-gradient(ellipse, #CC5803 1%,  #f0e0d5 68.73% )" : "#000000";
     };
-  
 
-      
-    
-  
     const MaterialUISwitch = styled(Switch)(({ theme }) => ({
       width: 62,
       height: 34,
-      padding: 7,
+      padding: 10,
+      
       '& .MuiSwitch-switchBase': {
         margin: 1,
         padding: 0,
         transform: 'translateX(6px)',
+        
         '&.Mui-checked': {
           color: '#fff',
           transform: 'translateX(22px)',
+          
           '& .MuiSwitch-thumb:before': {
             backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
               '#fff',
             )}" d="M4.2 2.5l-.7 1.8-1.8.7 1.8.7.7 1.8.6-1.8L6.7 5l-1.9-.7-.6-1.8zm15 8.3a6.7 6.7 0 11-6.6-6.6 5.8 5.8 0 006.6 6.6z"/></svg>')`,
           },
+          
           '& + .MuiSwitch-track': {
             opacity: 1,
-            backgroundColor: theme.palette.mode === 'dark' ? '#8796A5' : '#aab4be',
+            backgroundColor: theme.palette.mode === 'dark' ? '#8796A5' : '#CC5803',
           },
         },
       },
@@ -76,6 +75,7 @@ function Appbar() {
         backgroundColor: theme.palette.mode === 'dark' ? '#003892' : '#001e3c',
         width: 32,
         height: 32,
+        
         '&:before': {
           content: "''",
           position: 'absolute',
@@ -94,6 +94,7 @@ function Appbar() {
         opacity: 1,
         backgroundColor: theme.palette.mode === 'dark' ? '#8796A5' : '#aab4be',
         borderRadius: 20 / 2,
+        
       },
     }));
 
@@ -101,7 +102,8 @@ function Appbar() {
       <div style={{
         display: "flex",
         justifyContent: "space-between",
-        padding: "10px 10px 10px 10px",
+        alignItems:"center",
+        padding: "10px 10px 0px 30px",
         backgroundColor: location.pathname === "/" ? "#000000" : "",
       }}>
 
@@ -116,21 +118,22 @@ function Appbar() {
         }}>
 
           <div style={{
-            marginRight: 10
+            marginRight: 0
           }}>
             <FormControlLabel
-              control={<MaterialUISwitch sx={{ m: 1 }} 
-                          checked={isDarkMode} onChange={handleDarkModeToggle} 
+              control={<MaterialUISwitch sx={{ m: -2 }} 
+              checked={isDarkMode} onChange={handleDarkModeToggle}      
               />}
             />
 
             <Button
-              variant={"outlined"}
+              variant={""}
               style={{
-                padding: "0px 10px 0px 0px",
-                border: "1px solid #CC5803",
+                padding: "0px 5px 0px 0px",
+                // border: "1px solid #CC5803",
                 fontFamily: `"Gloock", "Gloock Placeholder", serif`,
                 fontWeight: "bold",
+                fontSize:"small",
                 color: "#CC5803",
               }}
               onClick={() => {
