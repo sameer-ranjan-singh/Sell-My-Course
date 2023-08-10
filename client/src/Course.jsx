@@ -19,7 +19,7 @@ function Course() {
     const [course, setCourse] = useState(null)
 
     useEffect(() => {
-        axios.get("http://localhost:3000/admin/course/"+ courseId,
+        axios.get("https://sell-my-course.onrender.com/admin/course/"+ courseId,
         {
             headers:{
                 "Authorization": "Bearer " + localStorage.getItem("token")
@@ -154,7 +154,7 @@ function UpdateCard({course,setCourse}) {
                         const confirmDelete = prompt("Type 'delete' to confirm deletion:")
                         if (confirmDelete === "delete") {
                            
-                            const response = await axios.delete(`http://localhost:3000/admin/courses/${course._id}`,
+                            const response = await axios.delete(`https://sell-my-course.onrender.com/admin/courses/${course._id}`,
                             {
                                 headers: {
                                     "Authorization": "Bearer " + localStorage.getItem("token")
@@ -176,7 +176,7 @@ function UpdateCard({course,setCourse}) {
                     variant="contained" endIcon={<SendIcon />}
                     onClick={async () => {
                       
-                            const response = await axios.put(`http://localhost:3000/admin/courses/${course._id}`,
+                            const response = await axios.put(`https://sell-my-course.onrender.com/admin/courses/${course._id}`,
                             {
                                 title: title,
                                 description: description,

@@ -71,7 +71,7 @@ justifyContent:'center'
                 fontFamily: `"Gloock", "Gloock Placeholder", serif`,
             }}
             onClick={async ()=>{
-                const response = await axios.post("http://localhost:3000/admin/signup",{
+                const response = await axios.post("https://sell-my-course.onrender.com/admin/signup",{
                     username:username,
                     passsword:password
                 })

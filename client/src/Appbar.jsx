@@ -29,7 +29,7 @@ function Appbar() {
       res.json().then(callback2)
     }
 
-    fetch("http://localhost:3000/admin/me", {
+    fetch("https://sell-my-course.onrender.com/admin/me", {
       method: "GET",
       headers: {
         "Authorization": "Bearer " + localStorage.getItem("token")
