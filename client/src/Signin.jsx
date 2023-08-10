@@ -73,7 +73,8 @@ function Signin(){
                 const response = await axios.post("https://sell-my-course.onrender.com/admin/login",null,{
                     headers:{
                         username:username,
-                        password:password  
+                        password:password,
+                        "Content-Type": "application/json",  
                     }
                 })
             const data = response.data

@@ -22,6 +22,7 @@ function Course() {
         axios.get("https://sell-my-course.onrender.com/admin/course/"+ courseId,
         {
             headers:{
+                "Content-Type": "application/json",
                 "Authorization": "Bearer " + localStorage.getItem("token")
 
             }
@@ -157,6 +158,7 @@ function UpdateCard({course,setCourse}) {
                             const response = await axios.delete(`https://sell-my-course.onrender.com/admin/courses/${course._id}`,
                             {
                                 headers: {
+                                    "Content-Type": "application/json",
                                     "Authorization": "Bearer " + localStorage.getItem("token")
                                 }
                             })
@@ -186,6 +188,7 @@ function UpdateCard({course,setCourse}) {
                             },
                             {
                                 headers: {
+                                    "Content-Type": "application/json",
                                     "Authorization": "Bearer " + localStorage.getItem("token")
                                 }
                             })

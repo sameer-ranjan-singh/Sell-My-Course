@@ -74,6 +74,10 @@ justifyContent:'center'
                 const response = await axios.post("https://sell-my-course.onrender.com/admin/signup",{
                     username:username,
                     passsword:password
+                },{
+                    headers:{
+                        "Content-Type": "application/json",
+                    }
                 })
                 const data =response.data
                 localStorage.setItem("token",data.token)

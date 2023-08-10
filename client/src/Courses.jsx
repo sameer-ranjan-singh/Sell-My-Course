@@ -30,6 +30,7 @@ function Courses() {
         fetch("https://sell-my-course.onrender.com/admin/courses", {
             method: "GET",
             headers: {
+                "Content-Type": "application/json",
                 "Authorization": "Bearer " + localStorage.getItem("token")
             }
         }).then(callback1)

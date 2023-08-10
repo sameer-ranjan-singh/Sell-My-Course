@@ -32,6 +32,7 @@ function Appbar() {
     fetch("https://sell-my-course.onrender.com/admin/me", {
       method: "GET",
       headers: {
+        "Content-Type": "application/json",
         "Authorization": "Bearer " + localStorage.getItem("token")
       }
     }).then(callback1)
