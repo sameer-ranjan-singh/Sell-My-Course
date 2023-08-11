@@ -34,7 +34,7 @@ function Landing(){
             letterSpacing: "0em",
             lineHeight: 1.1,
             textAlign: "center",
-        }}>Unleash your Skills, Enter the Virtual realm.</Typography>
+        }}>Unleash your<br />Skills,<br />Enter the Virtual<br />Realm.</Typography>
         </div>
 
         <div style={{

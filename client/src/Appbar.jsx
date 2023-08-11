@@ -156,6 +156,7 @@ function Appbar() {
     <>
       <div style={{
         display: "flex",
+        alignItems:"center",
         justifyContent: "space-between",
         padding: "10px 10px 0px 30px",
         color: "#CC5803",
@@ -174,7 +175,7 @@ function Appbar() {
           display: "flex"
         }}>
           <div style={{
-            marginRight: 10
+            marginRight: 4
           }}>
             <Button
               variant={"outlined"}
