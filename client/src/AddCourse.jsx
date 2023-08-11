@@ -80,7 +80,6 @@ function AddCourse(){
               variant={"contained"}
               onClick = {async () => {
                 const response = await axios.post(
-                    // "http://localhost:3000/admin/courses",
                     "https://sell-my-course.onrender.com/admin/courses",
                     {
                         title: title,

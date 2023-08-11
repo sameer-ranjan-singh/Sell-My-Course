@@ -16,7 +16,7 @@ function Course() {
 
     let { courseId } = useParams()
     let navigate = useNavigate()
-    const [course, setCourse] = useState(undefined)
+    const [course, setCourse] = useState([])
 
     useEffect(() => {
         axios.get("https://sell-my-course.onrender.com/admin/course/"+ courseId,
