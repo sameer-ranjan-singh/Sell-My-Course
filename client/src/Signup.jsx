@@ -73,7 +73,7 @@ justifyContent:'center'
             onClick={async ()=>{
                 const response = await axios.post("https://sell-my-course.onrender.com/admin/signup",{
                     username:username,
-                    passsword:password
+                    password:password
                 })
                 const data =response.data
                 localStorage.setItem("token",data.token)
