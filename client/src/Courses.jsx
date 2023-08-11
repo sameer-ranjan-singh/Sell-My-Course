@@ -30,7 +30,6 @@ function Courses() {
         fetch("https://sell-my-course.onrender.com/admin/courses", {
             method: "GET",
             headers: {
-                "Content-Type": "application/json",
                 "Authorization": "Bearer " + localStorage.getItem("token")
             }
         }).then(callback1)
@@ -158,7 +157,7 @@ export function Course({course}) {
             <div style={{ display: "flex", justifyContent: "space-between", margin: 5 }}>
 
 
-                <Switch {...label} defaultUnChecked color="warning" />
+                <Switch {...label} defaultunchecked ="false" color="warning" />
                 <Typography textAlign={"end"} variant="h6">
                     <span style={{ fontSize: "small", padding: 5, backgroundColor: "#bfd200" }}>Rs.{course.price}</span>
                 </Typography>

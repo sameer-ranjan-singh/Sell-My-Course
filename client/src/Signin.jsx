@@ -70,11 +70,10 @@ function Signin(){
                 fontFamily: `"Gloock", "Gloock Placeholder", serif`,
             }}
             onClick={async ()=>{
-                const response = await axios.post("https://sell-my-course.onrender.com/admin/login",null,{
+                const response = await axios.post("https://sell-my-course.onrender.com/admin/login",{},{
                     headers:{
                         username:username,
-                        password:password,
-                        "Content-Type": "application/json",  
+                        password:password
                     }
                 })
             const data = response.data
