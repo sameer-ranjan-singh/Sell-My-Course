@@ -1,5 +1,6 @@
 require('dotenv').config();
 
+const port = process.env.PORT || 3000
 const mongoUrl = process.env.MONGO_URL
 const mongoose = require("mongoose")
 const mongoOptions = {
@@ -24,4 +25,4 @@ app.use("/admin",adminRouter)
 
 mongoose.connect(mongoUrl, mongoOptions);
 
-app.listen(process.env.PORT || 3000, () => console.log("Server is running on port 3000"))
+app.listen(port, () => console.log(`Server is running on port ${port}`))
