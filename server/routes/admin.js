@@ -7,6 +7,12 @@ const { Admin , User, Course } = require("../db/index.js")
 
 const router = express.Router()
 
+router.get("/", async (req,res) => {
+  res.status(200).send({
+    message :"Hello from Render.com / sameer",
+  })
+})
+
 router.get("/me",authenticateJwt , (req , res) => {
     res.json({
       username: req.user.username 
