@@ -1,25 +1,37 @@
 require('dotenv').config();
 
+const express = require("express")
+const app = express()
+const cors = require("cors")
+const mongoose = require("mongoose")
 const port = process.env.PORT || 3000
 const mongoUrl = process.env.MONGO_URL
-const mongoose = require("mongoose")
+
 const mongoOptions = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     dbName: "courses"
   };
 
-const express = require("express")
-const cors = require("cors")
+app.use(cors({
+  credentials : true,
+  origin : "https://sell-my-course.onrender.com"
+}))
+
+app.use(function(req,res,next){
+  res.header("Content-Type", "application/json;charseu=UTF-8")
+  res.header("Access-Control-Allow-Credentials", true)
+  res.header(
+    "Access-Control-Allow-Credentials",
+     "Origin, X-requested-With, Content-Type, Accept"
+  )
+  next()
+})
 
 const adminRouter = require("./routes/admin")
 const userRouter = require("./routes/user")
 
-const app = express()
-
 app.use(express.json())
-app.use(cors())
-
 app.use("/admin",adminRouter)
 // app.use("/user",userRouter)
 

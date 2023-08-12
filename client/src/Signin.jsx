@@ -4,11 +4,12 @@ import {Card, Typography} from '@mui/material';
 import { useState } from 'react';
 import * as React from 'react';
 import axios from "axios"
+import { useNavigate } from "react-router-dom";
 
 function Signin(){
     let [username,setUsername] = useState("")
     let [password,setPassword] = useState("")
-
+    const navigate = useNavigate()
     return <div>
         <div style={{
             display: "flex",
@@ -78,7 +79,9 @@ function Signin(){
                 })
             const data = response.data
             localStorage.setItem("token",data.token)
-            window.location = "/courses"
+            // window.location = "/courses"
+            navigate("/courses") 
+
 
             }}
             >Login</Button>

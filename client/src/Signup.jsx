@@ -3,10 +3,12 @@ import TextField from '@mui/material/TextField';
 import {Card, Typography} from '@mui/material';
 import { useState } from 'react';
 import axios from "axios"
+import { useNavigate } from "react-router-dom";
 
 function Signup(){
 let [username,setUsername] = useState("")
 let [password,setPassword] = useState("")
+const navigate = useNavigate()
 
  return <div>     
     <div style={{
@@ -77,7 +79,8 @@ justifyContent:'center'
                 })
                 const data =response.data
                 localStorage.setItem("token",data.token)
-                window.location = "/courses" 
+                // window.location = "/courses"
+                navigate("/courses") 
             }}
             >Create Account</Button>
     </div>

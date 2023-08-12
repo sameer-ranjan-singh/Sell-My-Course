@@ -138,7 +138,8 @@ function Appbar() {
               }}
               onClick={() => {
                 localStorage.setItem("token", null)
-                window.location = "/signup"
+                // window.location = "/signup"
+                navigate("/")
               }}
             >
               <IconButton size="small" aria-label="fingerprint" color="success">
