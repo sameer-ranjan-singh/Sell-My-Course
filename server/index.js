@@ -15,7 +15,7 @@ const mongoOptions = {
 
 app.use(cors({
   credentials : true,
-  origin : "https://sell-my-course.onrender.com"
+  origin : "https://sameer-course.vercel.app"
 }))
 
 app.use(function(req,res,next){
