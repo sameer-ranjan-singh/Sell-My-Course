@@ -13,30 +13,31 @@ import { styled } from '@mui/material/styles';
 function Appbar() {
   const location = useLocation();
   const navigate = useNavigate()
-  const [userEmail, setUserEamil] = useState(null)
+  const [userEmail, setUserEmail] = useState(null)
 
   const [isDarkMode, setIsDarkMode] = useState(false);
 
 
-  useEffect(() => {
+  setTimeout(() => {
+    useEffect(() => {
 
-    function callback2(data) {
-      if (data.username) {
-        setUserEamil(data.username)
-      }
-    }
-    function callback1(res) {
-      res.json().then(callback2)
-    }
-
-    fetch("https://sell-my-course.onrender.com/admin/me", {
-      method: "GET",
-      headers: {
-        "Authorization": "Bearer " + localStorage.getItem("token")
-      }
-    }).then(callback1)
-  }, [])
-
+        function callback2(data) {
+          if (data.username) {
+            setUserEmail(data.username)
+          }
+        }
+        function callback1(res) {
+          res.json().then(callback2)
+        }
+    
+        fetch("https://sell-my-course.onrender.com/admin/me", {
+          method: "GET",
+          headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+          }
+        }).then(callback1)
+      }, [])
+ }, 6000);
   if (userEmail) {
    
     const handleDarkModeToggle = () => {

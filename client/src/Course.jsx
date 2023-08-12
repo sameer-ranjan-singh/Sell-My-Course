@@ -16,7 +16,7 @@ function Course() {
 
     let { courseId } = useParams()
     let navigate = useNavigate()
-    const [course, setCourse] = useState([])
+    const [course, setCourse] = useState(null)
 
     useEffect(() => {
         axios.get("https://sell-my-course.onrender.com/admin/course/"+ courseId,
@@ -39,8 +39,6 @@ function Course() {
     }
 
     return <>
-        <hr style={{ margin: 0 }} />
-
         <div style={{ display: "flex", justifyContent: "center",marginTop:60 }}>
             <Button
                 variant=""
@@ -232,15 +230,15 @@ function CourseCard(props) {
     }}>
         <div>
             <div style={{ display: "flex", textAlign: "center" }}>
-                <img src={props.course.imageLink} alt="Course Image Unavailable"
+                <img src={course.imageLink} alt="Course Image Unavailable"
                     style={{ width: 250, height: 150, boxShadow: "0px 5px 8px  black", }}
                 />
             </div>
-            <Typography style={{ backgroundColor: '#CC5803' }} textAlign={"center"} variant="h6">{props.course.title}</Typography>
-            <Typography textAlign={"center"} variant="subtitle1">{props.course.description}</Typography>
+            <Typography style={{ backgroundColor: '#CC5803' }} textAlign={"center"} variant="h6">{course.title}</Typography>
+            <Typography textAlign={"center"} variant="subtitle1">{course.description}</Typography>
             <Typography textAlign={"center"} variant="h6">
                 <span style={{ fontSize: "small", padding: 5, backgroundColor: "#bfd200" }}>
-                    Rs.{props.course.price}
+                    Rs.{course.price}
                 </span>
             </Typography>
         </div>
