@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 function Landing(){
     setTimeout(() => {
         window.scrollTo(0, window.innerHeight); // Scrolls to the height of the viewport
-      }, 2000);
+      }, 1000);
     const navigate = useNavigate()
    return <>
     <div style={{

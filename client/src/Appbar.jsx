@@ -17,10 +17,7 @@ function Appbar() {
 
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-
-  setTimeout(() => {
     useEffect(() => {
-
         function callback2(data) {
           if (data.username) {
             setUserEmail(data.username)
@@ -37,7 +34,7 @@ function Appbar() {
           }
         }).then(callback1)
       }, [])
- }, 6000);
+
   if (userEmail) {
    
     const handleDarkModeToggle = () => {
@@ -100,7 +97,7 @@ function Appbar() {
     }));
 
     return <>
-      <div style={{
+    <div style={{
         display: "flex",
         justifyContent: "space-between",
         alignItems:"center",
@@ -150,6 +147,56 @@ function Appbar() {
           </div>
         </div>
       </div>
+      {/* <div style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems:"center",
+        padding: "10px 10px 0px 30px",
+        backgroundColor: location.pathname === "/" ? "#000000" : "",
+      }}>
+
+        <div>
+          <Typography
+            variant={"h6"}
+            style={{ color: "#CC5803", fontSize: 25, fontFamily: `"Gloock", "Gloock Placeholder", serif`, }}>
+            S A M E E R</Typography>
+        </div>
+        <div style={{
+          display: "flex"
+        }}>
+
+          <div style={{
+            marginRight: 0
+          }}>
+            <FormControlLabel
+              control={<MaterialUISwitch sx={{ m: -2 }} 
+              checked={isDarkMode} onChange={handleDarkModeToggle}      
+              />}
+            />
+
+            <Button
+              variant={""}
+              style={{
+                padding: "0px 5px 0px 0px",
+                // border: "1px solid #CC5803",
+                fontFamily: `"Gloock", "Gloock Placeholder", serif`,
+                fontWeight: "bold",
+                fontSize:"small",
+                color: "#CC5803",
+              }}
+              onClick={() => {
+                localStorage.setItem("token", null)
+                // window.location = "/signup"
+                navigate("/")
+              }}
+            >
+              <IconButton size="small" aria-label="fingerprint" color="success">
+                <Fingerprint />
+              </IconButton>
+              Logout</Button>
+          </div>
+        </div>
+      </div> */}
     </>
 
   }
