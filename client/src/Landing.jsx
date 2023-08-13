@@ -14,7 +14,7 @@ function Landing(){
         flexDirection:"column",
         justifyContent:"center",
         backgroundColor:"#000000",
-        alignItems:"center" ,
+        alignItems:"center",
         height:"100vh",
         width:"100vw",
     }}>

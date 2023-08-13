@@ -81,9 +81,7 @@ function Signin(){
             localStorage.setItem("token",data.token)
             // window.location = "/courses"
             navigate("/courses") 
-
-
-            }}
+          }}
             >Login</Button>
                 </div>
 

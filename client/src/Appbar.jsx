@@ -35,7 +35,7 @@ function Appbar() {
         }).then(callback1)
       }, [])
 
-  if (userEmail) {
+  // if (userEmail) {
    
     const handleDarkModeToggle = () => {
       setIsDarkMode((prevMode) => !prevMode);
@@ -147,116 +147,65 @@ function Appbar() {
           </div>
         </div>
       </div>
-      {/* <div style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems:"center",
-        padding: "10px 10px 0px 30px",
-        backgroundColor: location.pathname === "/" ? "#000000" : "",
-      }}>
-
-        <div>
-          <Typography
-            variant={"h6"}
-            style={{ color: "#CC5803", fontSize: 25, fontFamily: `"Gloock", "Gloock Placeholder", serif`, }}>
-            S A M E E R</Typography>
-        </div>
-        <div style={{
-          display: "flex"
-        }}>
-
-          <div style={{
-            marginRight: 0
-          }}>
-            <FormControlLabel
-              control={<MaterialUISwitch sx={{ m: -2 }} 
-              checked={isDarkMode} onChange={handleDarkModeToggle}      
-              />}
-            />
-
-            <Button
-              variant={""}
-              style={{
-                padding: "0px 5px 0px 0px",
-                // border: "1px solid #CC5803",
-                fontFamily: `"Gloock", "Gloock Placeholder", serif`,
-                fontWeight: "bold",
-                fontSize:"small",
-                color: "#CC5803",
-              }}
-              onClick={() => {
-                localStorage.setItem("token", null)
-                // window.location = "/signup"
-                navigate("/")
-              }}
-            >
-              <IconButton size="small" aria-label="fingerprint" color="success">
-                <Fingerprint />
-              </IconButton>
-              Logout</Button>
-          </div>
-        </div>
-      </div> */}
     </>
-
   }
 
-  return (
-    <>
-      <div style={{
-        display: "flex",
-        alignItems:"center",
-        justifyContent: "space-between",
-        padding: "10px 10px 0px 30px",
-        color: "#CC5803",
-        backgroundColor: location.pathname === "/" ? "#000000" : "",
-      }}>
+  // return (
+  //   <>
+  //     <div style={{
+  //       display: "flex",
+  //       alignItems:"center",
+  //       justifyContent: "space-between",
+  //       padding: "10px 10px 0px 30px",
+  //       color: "#CC5803",
+  //       backgroundColor: location.pathname === "/" ? "#000000" : "",
+  //     }}>
 
-        <div>
-          <Typography
-            style={{
-              fontFamily: `"Gloock", "Gloock Placeholder", serif`,
-              fontSize: 25
-            }}
-            variant={"h6"}>S A M E E R</Typography>
-        </div>
-        <div style={{
-          display: "flex"
-        }}>
-          <div style={{
-            marginRight: 4
-          }}>
-            <Button
-              variant={"outlined"}
-              onClick={() => {
-                navigate("/signup")
-              }}
-              style={{
-                border: "1px solid #CC5803",
-                fontFamily: `"Gloock", "Gloock Placeholder", serif`,
-                color: "#CC5803",
-              }}
-            >Sign up</Button>
-          </div>
-          <div style={{
-            marginRight: 10
-          }}>
-            <Button
-              variant={"contained"}
-              onClick={() => {
-                navigate("signin")
-              }}
-              style={{
-                backgroundColor: "#CC5803",
-                fontFamily: `"Gloock", "Gloock Placeholder", serif`,
-              }}
-            >Login</Button>
-          </div>
-        </div>
-      </div>
-    </>
+  //       <div>
+  //         <Typography
+  //           style={{
+  //             fontFamily: `"Gloock", "Gloock Placeholder", serif`,
+  //             fontSize: 25
+  //           }}
+  //           variant={"h6"}>S A M E E R</Typography>
+  //       </div>
+  //       <div style={{
+  //         display: "flex"
+  //       }}>
+  //         <div style={{
+  //           marginRight: 4
+  //         }}>
+  //           <Button
+  //             variant={"outlined"}
+  //             onClick={() => {
+  //               navigate("/signup")
+  //             }}
+  //             style={{
+  //               border: "1px solid #CC5803",
+  //               fontFamily: `"Gloock", "Gloock Placeholder", serif`,
+  //               color: "#CC5803",
+  //             }}
+  //           >Sign up</Button>
+  //         </div>
+  //         <div style={{
+  //           marginRight: 10
+  //         }}>
+  //           <Button
+  //             variant={"contained"}
+  //             onClick={() => {
+  //               navigate("signin")
+  //             }}
+  //             style={{
+  //               backgroundColor: "#CC5803",
+  //               fontFamily: `"Gloock", "Gloock Placeholder", serif`,
+  //             }}
+  //           >Login</Button>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   </>
+  // )
 
-  )
-}
+  // }
 
 export default Appbar

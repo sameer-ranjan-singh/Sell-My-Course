@@ -1,4 +1,6 @@
 import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import Fingerprint from '@mui/icons-material/Fingerprint';
 import TextField from '@mui/material/TextField';
 import {Card} from '@mui/material';
 import { useState } from 'react';
@@ -15,7 +17,22 @@ function AddCourse(){
 
     const navigate = useNavigate()
     
-    return <div style={{
+    return <>
+    <div style={{ display: "flex", justifyContent: "center",marginTop:60 }}>
+            <Button
+                variant=""
+                style={{ padding: "0px 10px 0px 0px",color:"#CC5803"}}
+                onClick={() => {
+                    navigate("/courses")
+                }}
+            >
+                <IconButton aria-label="fingerprint" color="success">
+                    <Fingerprint />
+                </IconButton>
+                H o m e
+            </Button>
+        </div>
+    <div style={{
         display:"flex",
         justifyContent:'center',
         paddingTop:70
@@ -101,6 +118,7 @@ function AddCourse(){
         </div>
         </Card>
     </div>
+    </>
 }
 
 export default AddCourse

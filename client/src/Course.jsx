@@ -221,12 +221,12 @@ function CourseCard(props) {
         margin: 10,
         minHeight: 350,
         maxHeight: 350,
-        boxShadow: "0px 0px 10px grey",
+        boxShadow: "0px 0px 10px black",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
         borderRadius: 40,
-        border: "1px solid black",
+        // border: "1px solid black",
     }}>
         <div>
             <div style={{ display: "flex", textAlign: "center" }}>

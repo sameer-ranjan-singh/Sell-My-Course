@@ -14,7 +14,6 @@ import IconButton from '@mui/material/IconButton';
 import Fingerprint from '@mui/icons-material/Fingerprint';
 import Button from '@mui/material/Button';
 
-
 function Courses() {
     const [courses, setCourses] = useState([])
     const navigate = useNavigate()
