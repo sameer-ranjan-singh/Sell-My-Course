@@ -76,7 +76,7 @@ if(courses.length === 0 ){
                 backgroundColor: "transparent",
                 position: 'fixed',
                 bottom: 50,
-                right: 20,
+                right: 16,
                 zIndex: 1,
             }}>
                 <Fab
