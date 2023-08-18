@@ -10,32 +10,13 @@ import Switch from '@mui/material/Switch';
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 
-function Appbar() {
+function Appbar({userEmail, setUserEmail}) {
   const location = useLocation();
   const navigate = useNavigate()
-  const [userEmail, setUserEmail] = useState(null)
 
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-    useEffect(() => {
-        function callback2(data) {
-          if (data.username) {
-            setUserEmail(data.username)
-          }
-        }
-        function callback1(res) {
-          res.json().then(callback2)
-        }
-    
-        fetch("https://sell-my-course.onrender.com/admin/me", {
-          method: "GET",
-          headers: {
-            "Authorization": "Bearer " + localStorage.getItem("token")
-          }
-        }).then(callback1)
-      }, [])
-
-  // if (userEmail) {
+  if (userEmail) {
    
     const handleDarkModeToggle = () => {
       setIsDarkMode((prevMode) => !prevMode);
@@ -137,6 +118,7 @@ function Appbar() {
               onClick={() => {
                 localStorage.setItem("token", null)
                 // window.location = "/signup"
+                setUserEmail(null)
                 navigate("/")
               }}
             >
@@ -149,63 +131,64 @@ function Appbar() {
       </div>
     </>
   }
+ else{
+  return (
+    <>
+      <div style={{
+        display: "flex",
+        alignItems:"center",
+        justifyContent: "space-between",
+        padding: "10px 10px 0px 30px",
+        color: "#CC5803",
+        backgroundColor: location.pathname === "/" ? "#000000" : "",
+      }}>
 
-  // return (
-  //   <>
-  //     <div style={{
-  //       display: "flex",
-  //       alignItems:"center",
-  //       justifyContent: "space-between",
-  //       padding: "10px 10px 0px 30px",
-  //       color: "#CC5803",
-  //       backgroundColor: location.pathname === "/" ? "#000000" : "",
-  //     }}>
+        <div>
+          <Typography
+            style={{
+              fontFamily: `"Gloock", "Gloock Placeholder", serif`,
+              fontSize: 25
+            }}
+            variant={"h6"}>S A M E E R</Typography>
+        </div>
+        <div style={{
+          display: "flex"
+        }}>
+          <div style={{
+            marginRight: 4
+          }}>
+            <Button
+              variant={"outlined"}
+              onClick={() => {
+                navigate("/signup")
+              }}
+              style={{
+                border: "1px solid #CC5803",
+                fontFamily: `"Gloock", "Gloock Placeholder", serif`,
+                color: "#CC5803",
+              }}
+            >Sign up</Button>
+          </div>
+          <div style={{
+            marginRight: 10
+          }}>
+            <Button
+              variant={"contained"}
+              onClick={() => {
+                navigate("signin")
+              }}
+              style={{
+                backgroundColor: "#CC5803",
+                fontFamily: `"Gloock", "Gloock Placeholder", serif`,
+              }}
+            >Login</Button>
+          </div>
+        </div>
+      </div>
+    </>
+  )
+ }
 
-  //       <div>
-  //         <Typography
-  //           style={{
-  //             fontFamily: `"Gloock", "Gloock Placeholder", serif`,
-  //             fontSize: 25
-  //           }}
-  //           variant={"h6"}>S A M E E R</Typography>
-  //       </div>
-  //       <div style={{
-  //         display: "flex"
-  //       }}>
-  //         <div style={{
-  //           marginRight: 4
-  //         }}>
-  //           <Button
-  //             variant={"outlined"}
-  //             onClick={() => {
-  //               navigate("/signup")
-  //             }}
-  //             style={{
-  //               border: "1px solid #CC5803",
-  //               fontFamily: `"Gloock", "Gloock Placeholder", serif`,
-  //               color: "#CC5803",
-  //             }}
-  //           >Sign up</Button>
-  //         </div>
-  //         <div style={{
-  //           marginRight: 10
-  //         }}>
-  //           <Button
-  //             variant={"contained"}
-  //             onClick={() => {
-  //               navigate("signin")
-  //             }}
-  //             style={{
-  //               backgroundColor: "#CC5803",
-  //               fontFamily: `"Gloock", "Gloock Placeholder", serif`,
-  //             }}
-  //           >Login</Button>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   </>
-  // )
-
-  // }
+  }
 
 export default Appbar
