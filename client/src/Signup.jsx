@@ -5,7 +5,7 @@ import { useState } from 'react';
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
 
-function Signup(){
+function Signup({userEmail , setUserEmail}){
 let [username,setUsername] = useState("")
 let [password,setPassword] = useState("")
 const navigate = useNavigate()
@@ -80,6 +80,7 @@ justifyContent:'center'
                 const data =response.data
                 localStorage.setItem("token",data.token)
                 // window.location = "/courses"
+                setUserEmail(username)
                 navigate("/courses") 
             }}
             >Create Account</Button>
