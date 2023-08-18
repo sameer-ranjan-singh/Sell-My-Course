@@ -11,15 +11,16 @@ import SendIcon from '@mui/icons-material/Send';
 import IconButton from '@mui/material/IconButton';
 import Fingerprint from '@mui/icons-material/Fingerprint';
 import axios from "axios"
+import { Base_URL } from "./config";
 
 function Course() {
 
     let { courseId } = useParams()
     let navigate = useNavigate()
     const [course, setCourse] = useState(null)
-
+    
     useEffect(() => {
-        axios.get("https://sell-my-course.onrender.com/admin/course/"+ courseId,
+        axios.get(`${Base_URL}/admin/course/`+ courseId,
         {
             headers:{
                 "Authorization": "Bearer " + localStorage.getItem("token")
@@ -152,7 +153,7 @@ function UpdateCard({course,setCourse}) {
                         const confirmDelete = prompt("Type 'delete' to confirm deletion:")
                         if (confirmDelete === "delete") {
                            
-                            const response = await axios.delete(`https://sell-my-course.onrender.com/admin/courses/${course._id}`,
+                            const response = await axios.delete(`${Base_URL}/admin/courses/${course._id}`,
                             {
                                 headers: {
                                     "Authorization": "Bearer " + localStorage.getItem("token")
@@ -174,7 +175,7 @@ function UpdateCard({course,setCourse}) {
                     variant="contained" endIcon={<SendIcon />}
                     onClick={async () => {
                       
-                            const response = await axios.put(`https://sell-my-course.onrender.com/admin/courses/${course._id}`,
+                            const response = await axios.put(`${Base_URL}/admin/courses/${course._id}`,
                             {
                                 title: title,
                                 description: description,

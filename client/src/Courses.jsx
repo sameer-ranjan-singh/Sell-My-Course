@@ -14,6 +14,9 @@ import IconButton from '@mui/material/IconButton';
 import Fingerprint from '@mui/icons-material/Fingerprint';
 import Button from '@mui/material/Button';
 
+import { Base_URL } from "./config";
+
+
 function Courses() {
     const [courses, setCourses] = useState([])
     const navigate = useNavigate()
@@ -26,7 +29,7 @@ function Courses() {
         function callback1(res) {
             res.json().then(callback2)
         }
-        fetch("https://sell-my-course.onrender.com/admin/courses", {
+        fetch(`${Base_URL}/admin/courses`, {
             method: "GET",
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem("token")
@@ -52,7 +55,7 @@ if(courses.length === 0 ){
                 backgroundColor: "transparent",
                 position: 'fixed',
                 bottom: 50,
-                right: 20,
+                right: 15,
                 zIndex: 1,
             }}>
                 <Fab

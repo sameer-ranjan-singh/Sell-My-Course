@@ -122,9 +122,6 @@ function Appbar({userEmail, setUserEmail}) {
                 navigate("/")
               }}
             >
-              <IconButton size="small" aria-label="fingerprint" color="success">
-                <Fingerprint />
-              </IconButton>
               Logout</Button>
           </div>
         </div>

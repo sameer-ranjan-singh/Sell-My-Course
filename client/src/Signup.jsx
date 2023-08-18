@@ -4,6 +4,7 @@ import {Card, Typography} from '@mui/material';
 import { useState } from 'react';
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
+import { Base_URL } from "./config";
 
 function Signup({userEmail , setUserEmail}){
 let [username,setUsername] = useState("")
@@ -30,7 +31,7 @@ justifyContent:'center'
     style={{
         width: 250,
         padding:20,
-        borderRadius:20,
+        // borderRadius:20,
         boxShadow:"0px 0px 3px black",
     }}
 >
@@ -42,7 +43,7 @@ justifyContent:'center'
             fullWidth={true}
             id="outlined-basic"
             label="Username"
-            variant="outlined"
+            variant="standard"
         />
     </div>
     <div style={{marginBottom :10}}>
@@ -53,7 +54,7 @@ justifyContent:'center'
             fullWidth={true}
             id="outlined-basic"
             label="Password"
-            variant="outlined"
+            variant="standard"
             type={"password"}
         />
     </div>
@@ -73,7 +74,7 @@ justifyContent:'center'
                 fontFamily: `"Gloock", "Gloock Placeholder", serif`,
             }}
             onClick={async ()=>{
-                const response = await axios.post("https://sell-my-course.onrender.com/admin/signup",{
+                const response = await axios.post(`${Base_URL}/admin/signup`,{
                     username:username,
                     password:password
                 })

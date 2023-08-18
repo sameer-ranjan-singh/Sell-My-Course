@@ -21,7 +21,7 @@ function Landing(){
         <div>
         <Typography style={{
             flexShrink: 0,
-            width: "100vw",
+            width: "80vw",
             height: "auto", /* 176px */
             whiteSpace: "pre-wrap",
             wordWrap: "break-word",
@@ -34,7 +34,7 @@ function Landing(){
             letterSpacing: "0em",
             lineHeight: 1.1,
             textAlign: "center",
-        }}>Unleash your Skills,<br />Enter the<br />Virtual Realm.</Typography>
+        }}>"Good artists copy<br />Great Artists Steal"</Typography>
         </div>
 
         <div style={{

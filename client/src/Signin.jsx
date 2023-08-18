@@ -5,6 +5,8 @@ import { useState } from 'react';
 import * as React from 'react';
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
+import { Base_URL } from "./config";
+
 
 function Signin({userEmail , setUserEmail}){
     let [username,setUsername] = useState("")
@@ -29,7 +31,7 @@ function Signin({userEmail , setUserEmail}){
                 style={{
                     width: 250,
                     padding:20,
-                    borderRadius:20,
+                    // borderRadius:20,
                     boxShadow:"0px 0px 3px black"
                 }}
             >
@@ -41,7 +43,7 @@ function Signin({userEmail , setUserEmail}){
                         fullWidth={true}
                         id="outlined-basic"
                         label="Username"
-                        variant="outlined"
+                        variant="standard"
                     />
                 </div>
                 <div style={{marginBottom :10}}>
@@ -52,7 +54,8 @@ function Signin({userEmail , setUserEmail}){
                         fullWidth={true}
                         id="outlined-basic"
                         label="Password"
-                        variant="outlined"
+                        variant="standard"
+                        type={"password"}
                     />
                 </div>
                 <div style={{justifyContent:"end",display:"flex"}} >
@@ -71,7 +74,7 @@ function Signin({userEmail , setUserEmail}){
                 fontFamily: `"Gloock", "Gloock Placeholder", serif`,
             }}
             onClick={async ()=>{
-                const response = await axios.post("https://sell-my-course.onrender.com/admin/login",null,{
+                const response = await axios.post(`${Base_URL}/admin/login`,null,{
                     headers:{
                         username:username,
                         password:password

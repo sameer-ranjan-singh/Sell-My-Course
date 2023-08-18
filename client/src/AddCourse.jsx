@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import * as React from 'react';
 import axios from "axios"
-
+import { Base_URL } from "./config";
 
 function AddCourse(){
     const [title, setTitle] = useState("")
@@ -97,7 +97,7 @@ function AddCourse(){
               variant={"contained"}
               onClick = {async () => {
                 const response = await axios.post(
-                    "https://sell-my-course.onrender.com/admin/courses",
+                    `${Base_URL}/admin/courses`,
                     {
                         title: title,
                         description: description,

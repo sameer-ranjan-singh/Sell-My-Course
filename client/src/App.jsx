@@ -6,6 +6,8 @@ import AddCourse from "./AddCourse"
 import Courses from "./Courses";
 import Course from "./Course"
 import Landing from "./Landing";
+import Footer from "./Footer";
+import { Base_URL } from "./config";
 
 import { useState , useEffect } from "react";
 import axios from "axios"
@@ -15,7 +17,7 @@ function App(){
   const [userEmail, setUserEmail] = useState(null)
 
   const adminCheck = async () => {
-         const response = await axios.get("https://sell-my-course.onrender.com/admin/me", {
+         const response = await axios.get(`${Base_URL}/admin/me`, {
       headers: {
         "Authorization": "Bearer " + localStorage.getItem("token")
       }
@@ -44,6 +46,7 @@ function App(){
           <Route path="/signup" element={<Signup setUserEmail ={setUserEmail}/>}/>
           <Route path="/signin" element={<Signin setUserEmail ={setUserEmail}/>}/>
       </Routes>
+      <Footer/>
     </Router>
 
   </div>
