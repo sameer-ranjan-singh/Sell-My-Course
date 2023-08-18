@@ -6,7 +6,7 @@ import * as React from 'react';
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
 
-function Signin(){
+function Signin({userEmail , setUserEmail}){
     let [username,setUsername] = useState("")
     let [password,setPassword] = useState("")
     const navigate = useNavigate()
@@ -80,6 +80,7 @@ function Signin(){
             const data = response.data
             localStorage.setItem("token",data.token)
             // window.location = "/courses"
+            setUserEmail(username)
             navigate("/courses") 
           }}
             >Login</Button>
