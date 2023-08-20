@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import * as React from 'react';
 import axios from "axios"
-import { Base_URL } from "./config";
+import { Base_URL } from "../config";
 
 function AddCourse(){
     const [title, setTitle] = useState("")

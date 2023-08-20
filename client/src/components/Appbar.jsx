@@ -1,20 +1,29 @@
 import { Typography } from "@mui/material"
 import Button from '@mui/material/Button';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import IconButton from '@mui/material/IconButton';
-import Fingerprint from '@mui/icons-material/Fingerprint';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { userState } from "../store/atoms/user";
+import { isUserLoading } from "../store/selectors/isUserLoading";
+import { userEmailState } from "../store/selectors/userEmail";
 
-function Appbar({userEmail, setUserEmail}) {
-  const location = useLocation();
+function Appbar({}) {
+ const location = useLocation();
   const navigate = useNavigate()
-
   const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const setUser = useSetRecoilState(userState)
+  const userLoading =  useRecoilValue(isUserLoading)
+  const userEmail =  useRecoilValue(userEmailState)
+
+  if(userLoading){
+  return <></>
+}
 
   if (userEmail) {
    
@@ -109,7 +118,6 @@ function Appbar({userEmail, setUserEmail}) {
               variant={""}
               style={{
                 padding: "0px 5px 0px 0px",
-                // border: "1px solid #CC5803",
                 fontFamily: `"Gloock", "Gloock Placeholder", serif`,
                 fontWeight: "bold",
                 fontSize:"small",
@@ -117,8 +125,12 @@ function Appbar({userEmail, setUserEmail}) {
               }}
               onClick={() => {
                 localStorage.setItem("token", null)
+                setUser({
+                  isLoading : false,
+                  userEmail: null
+                })
                 // window.location = "/signup"
-                setUserEmail(null)
+                // setUserEmail(null)
                 navigate("/")
               }}
             >
@@ -161,7 +173,7 @@ function Appbar({userEmail, setUserEmail}) {
               }}
               style={{
                 border: "1px solid #CC5803",
-                fontFamily: `"Gloock", "Gloock Placeholder", serif`,
+                // fontFamily: `"Gloock", "Gloock Placeholder", serif`,
                 color: "#CC5803",
               }}
             >Sign up</Button>

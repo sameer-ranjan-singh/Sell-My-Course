@@ -14,29 +14,25 @@ import IconButton from '@mui/material/IconButton';
 import Fingerprint from '@mui/icons-material/Fingerprint';
 import Button from '@mui/material/Button';
 
-import { Base_URL } from "./config";
+import { Base_URL } from "../config";
+import axios from "axios";
 
 
 function Courses() {
     const [courses, setCourses] = useState([])
     const navigate = useNavigate()
-    useEffect(() => {
-        function callback2(data) {
-            console.log(data)
-            setCourses(data.courses)
-        }
 
-        function callback1(res) {
-            res.json().then(callback2)
-        }
-        fetch(`${Base_URL}/admin/courses`, {
-            method: "GET",
+    const init = async () => {
+        const response = await axios.get(`${Base_URL}/admin/courses/`, {
             headers: {
-                "Authorization": "Bearer " + localStorage.getItem("token")
+                Authorization: `Bearer ${localStorage.getItem('token')}`
             }
-        }).then(callback1)
-
-
+        })
+        setCourses(response.data.courses)
+    }
+    
+    useEffect(() => {
+        init()
     }, [])
 if(courses.length === 0 ){
     return <>

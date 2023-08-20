@@ -11,13 +11,17 @@ import SendIcon from '@mui/icons-material/Send';
 import IconButton from '@mui/material/IconButton';
 import Fingerprint from '@mui/icons-material/Fingerprint';
 import axios from "axios"
-import { Base_URL } from "./config";
+import { Base_URL } from "../config";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil"
+import { courseState } from "../store/atoms/course"
+import { courseDescription, courseImage, coursePrice, courseTitle, isCourseLoading } from "../store/selectors/course"
 
 function Course() {
 
     let { courseId } = useParams()
+    const setCourse = useSetRecoilState(courseState)
+    const courseLoading = useRecoilValue(isCourseLoading)
     let navigate = useNavigate()
-    const [course, setCourse] = useState(null)
     
     useEffect(() => {
         axios.get(`${Base_URL}/admin/course/`+ courseId,
@@ -27,11 +31,14 @@ function Course() {
 
             }
         }).then(res =>{
-            setCourse(res.data.course)
+            setCourse({isloading: false , course : res.data.course})
         })
+        .catch (error => {
+          setCourse({isloading: false , course :null})
+         })
     }, [])
 
-    if (!course) {
+    if (courseLoading) {
         return (
             <Stack sx={{ width: '100%', color: 'grey.500' }} spacing={2}>
                 <LinearProgress />
@@ -66,20 +73,20 @@ function Course() {
             margin: "10px 50px 50px 50px",
             padding: "20px 0px 50px 0px",
         }}>
-            <UpdateCard  course={course} setCourse={setCourse} />
-            <CourseCard course={course} />
+            <UpdateCard />
+            <CourseCard />
         </div>
     </>
 }
 
-function UpdateCard({course,setCourse}) {
-    // const course = props.course
+function UpdateCard() {
+    const [courseDetails , setCourse] = useRecoilState(courseState)
 
-    const [title, setTitle] = useState(course.title)
-    const [description, setDescription] = useState(course.description)
-    const [image, setImage] = useState(course.imageLink)
-    const [price, setPrice] = useState(course.price)
-    const [published, setPublished] = useState(course.published)
+    const [title, setTitle] = useState(courseDetails.course.title)
+    const [description, setDescription] = useState(courseDetails.course.description)
+    const [image, setImage] = useState(courseDetails.course.imageLink)
+    const [price, setPrice] = useState(courseDetails.course.price)
+    // const [published, setPublished] = useState(courseDetails.course.published)
 
     const navigate = useNavigate()
 
@@ -153,7 +160,7 @@ function UpdateCard({course,setCourse}) {
                         const confirmDelete = prompt("Type 'delete' to confirm deletion:")
                         if (confirmDelete === "delete") {
                            
-                            const response = await axios.delete(`${Base_URL}/admin/courses/${course._id}`,
+                            const response = await axios.delete(`${Base_URL}/admin/courses/${courseDetails.course._id}`,
                             {
                                 headers: {
                                     "Authorization": "Bearer " + localStorage.getItem("token")
@@ -175,7 +182,7 @@ function UpdateCard({course,setCourse}) {
                     variant="contained" endIcon={<SendIcon />}
                     onClick={async () => {
                       
-                            const response = await axios.put(`${Base_URL}/admin/courses/${course._id}`,
+                            const response = await axios.put(`${Base_URL}/admin/courses/${courseDetails.course._id}`,
                             {
                                 title: title,
                                 description: description,
@@ -190,18 +197,14 @@ function UpdateCard({course,setCourse}) {
                             })
                             const data =response.data
                             let updatedCourses ={
-                                _id: course._id,
+                                _id: courseDetails.course._id,
                                 title: title,
                                 description: description,
                                 imageLink: image,
                                 price: price,
                                 published: published
                             }
-                            setCourse(updatedCourses)
-                            alert("Course UPDATED successfully")
-                            setTimeout(()=>{
-                                navigate("/courses")
-                            },5000)                          
+                            setCourse({course : updatedCourses, isloading : false})                       
                     }}
                 >Update</Button>
             </div>
@@ -210,8 +213,11 @@ function UpdateCard({course,setCourse}) {
 
 }
 
-function CourseCard(props) {
-    const course = props.course
+function CourseCard() {
+    const title = useRecoilValue(courseTitle)
+    const description = useRecoilValue(courseDescription)
+    const price = useRecoilValue(coursePrice)
+    const imageLink = useRecoilValue(courseImage)
     return <section style={{
         display: "flex",
         justifyContent: 'center',
@@ -227,19 +233,18 @@ function CourseCard(props) {
         flexDirection: "column",
         justifyContent: "space-between",
         borderRadius: 40,
-        // border: "1px solid black",
     }}>
         <div>
             <div style={{ display: "flex", textAlign: "center" }}>
-                <img src={course.imageLink} alt="Course Image Unavailable"
+                <img src={imageLink} alt="Course Image Unavailable"
                     style={{ width: 250, height: 150, boxShadow: "0px 5px 8px  black", }}
                 />
             </div>
-            <Typography style={{ backgroundColor: '#CC5803' }} textAlign={"center"} variant="h6">{course.title}</Typography>
-            <Typography textAlign={"center"} variant="subtitle1">{course.description}</Typography>
+            <Typography style={{ backgroundColor: '#CC5803' }} textAlign={"center"} variant="h6">{title}</Typography>
+            <Typography textAlign={"center"} variant="subtitle1">{description}</Typography>
             <Typography textAlign={"center"} variant="h6">
                 <span style={{ fontSize: "small", padding: 5, backgroundColor: "#bfd200" }}>
-                    Rs.{course.price}
+                    Rs.{price}
                 </span>
             </Typography>
         </div>
