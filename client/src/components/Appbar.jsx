@@ -97,8 +97,11 @@ function Appbar({}) {
 
         <div>
           <Typography
+          onClick ={()=> {
+            navigate("/")
+          }}
             variant={"h6"}
-            style={{ color: "#CC5803", fontSize: 25, fontFamily: `"Gloock", "Gloock Placeholder", serif`, }}>
+            style={{ color: "#CC5803", fontSize: 25, fontFamily: `"Gloock", "Gloock Placeholder", serif`,cursor:"pointer" }}>
             S A M E E R</Typography>
         </div>
         <div style={{
@@ -154,9 +157,13 @@ function Appbar({}) {
 
         <div>
           <Typography
+          onClick ={()=> {
+            navigate("/")
+          }}
             style={{
               fontFamily: `"Gloock", "Gloock Placeholder", serif`,
-              fontSize: 25
+              fontSize: 25,
+              cursor:"pointer"
             }}
             variant={"h6"}>S A M E E R</Typography>
         </div>

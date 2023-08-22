@@ -5,6 +5,5 @@ export const courseState = atom({
     default: {
         isLoading : true,
         course : null,
-        // checkPublish: false
     }
 })

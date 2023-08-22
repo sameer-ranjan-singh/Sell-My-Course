@@ -16,6 +16,7 @@ import Button from '@mui/material/Button';
 
 import { Base_URL } from "../config";
 import axios from "axios";
+import { courseState } from "../store/atoms/course";
 
 
 function Courses() {
@@ -155,7 +156,12 @@ export function Course({course}) {
             <div style={{ display: "flex", justifyContent: "space-between", margin: 5 }}>
 
 
-                <Switch {...label} defaultunchecked ="false" color="warning" />
+                <Switch {...label} defaultunchecked ="false" color="warning" 
+                  onClick={ async () => {
+                    
+                    }
+                   } 
+                />
                 <Typography textAlign={"end"} variant="h6">
                     <span style={{ fontSize: "small", padding: 5, backgroundColor: "#bfd200" }}>Rs.{course.price}</span>
                 </Typography>
