@@ -8,6 +8,7 @@ import Course from "./components/Course"
 import Landing from "./components/Landing";
 import Footer from "./components/Footer";
 import { Base_URL } from "./config";
+import Intro from "./components/Intro"
 
 import { useState , useEffect } from "react";
 import axios from "axios"
@@ -30,7 +31,8 @@ function App(){
               <Appbar/>
               <InitUser/>
               <Routes>
-                  <Route path="/" element = {<Landing/>}/>
+                  <Route path="/" element = {<Intro/>}/>
+                  <Route path="/landing" element = {<Landing/>}/>
                   <Route path="/addcourse" element={<AddCourse/>}/>
                   <Route path="/courses" element={<Courses/>}/>
                   <Route path="/course/:courseId" element={<Course/>}/>

@@ -24,6 +24,9 @@ function Appbar({}) {
   if(userLoading){
   return <></>
 }
+// if(location.pathname === "/" ||location.pathname === "/landing"){
+//    return "#000000"
+// }
 
   if (userEmail) {
    
@@ -92,17 +95,17 @@ function Appbar({}) {
         justifyContent: "space-between",
         alignItems:"center",
         padding: "10px 10px 0px 30px",
-        backgroundColor: location.pathname === "/" ? "#000000" : "",
+        backgroundColor: location.pathname === "/" || location.pathname === "/landing" ? "#000000" : "",
       }}>
 
         <div>
           <Typography
           onClick ={()=> {
-            navigate("/")
+            navigate("/landing")
           }}
             variant={"h6"}
             style={{ color: "#CC5803", fontSize: 25, fontFamily: `"Gloock", "Gloock Placeholder", serif`,cursor:"pointer" }}>
-            S A M E E R</Typography>
+            C O D E</Typography>
         </div>
         <div style={{
           display: "flex"
@@ -132,8 +135,7 @@ function Appbar({}) {
                   isLoading : false,
                   userEmail: null
                 })
-                // window.location = "/signup"
-                // setUserEmail(null)
+
                 navigate("/")
               }}
             >
@@ -152,7 +154,7 @@ function Appbar({}) {
         justifyContent: "space-between",
         padding: "10px 10px 0px 30px",
         color: "#CC5803",
-        backgroundColor: location.pathname === "/" ? "#000000" : "",
+        backgroundColor: location.pathname === "/" || location.pathname === "/landing" ? "#000000" : "",
       }}>
 
         <div>
@@ -165,7 +167,7 @@ function Appbar({}) {
               fontSize: 25,
               cursor:"pointer"
             }}
-            variant={"h6"}>S A M E E R</Typography>
+            variant={"h6"}>C O D E</Typography>
         </div>
         <div style={{
           display: "flex"
@@ -174,12 +176,12 @@ function Appbar({}) {
             marginRight: 4
           }}>
             <Button
-              variant={"outlined"}
+              variant={""}
               onClick={() => {
                 navigate("/signup")
               }}
               style={{
-                border: "1px solid #CC5803",
+                // border: "1px solid #CC5803",
                 // fontFamily: `"Gloock", "Gloock Placeholder", serif`,
                 color: "#CC5803",
               }}
@@ -189,13 +191,13 @@ function Appbar({}) {
             marginRight: 10
           }}>
             <Button
-              variant={"contained"}
+              variant={""}
               onClick={() => {
-                navigate("signin")
+                navigate("/signin")
               }}
               style={{
-                backgroundColor: "#CC5803",
-                fontFamily: `"Gloock", "Gloock Placeholder", serif`,
+                color: "#CC5803",
+                // fontFamily: `"Gloock", "Gloock Placeholder", serif`,
               }}
             >Login</Button>
           </div>

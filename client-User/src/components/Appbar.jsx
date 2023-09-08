@@ -101,7 +101,7 @@ function Appbar({}) {
           }}
             variant={"h6"}
             style={{ color: "#93c422", fontSize: 25, fontFamily: `"Gloock", "Gloock Placeholder", serif`,cursor:"pointer" }}>
-            HippoCampus</Typography>
+            C O D E</Typography>
         </div>
         <div style={{
           display: "flex"
@@ -115,26 +115,26 @@ function Appbar({}) {
               checked={isDarkMode} onChange={handleDarkModeToggle}      
               />}
             />
+            <Link to="http://sameer-course.vercel.app" target="_blank" rel="noopener noreferrer">
+              <Button
+                variant={""}
+                style={{
+                  padding: "0px 5px 0px 0px",
+                  fontWeight: "bold",
+                  fontSize:"small",
+                  color: "#93c422",
+                }}
+                onClick={() => {
+                  localStorage.setItem("token", null)
+                  setUser({
+                    isLoading : false,
+                    userEmail: null
+                  })
 
-            <Button
-              variant={""}
-              style={{
-                padding: "0px 5px 0px 0px",
-                fontWeight: "bold",
-                fontSize:"small",
-                color: "#93c422",
-              }}
-              onClick={() => {
-                localStorage.setItem("token", null)
-                setUser({
-                  isLoading : false,
-                  userEmail: null
-                })
-
-                navigate("/")
-              }}
-            >
-              Logout</Button>
+                  navigate("/")
+                }}
+              >Logout</Button>
+            </Link>
           </div>
         </div>
       </div>
@@ -162,7 +162,7 @@ function Appbar({}) {
               fontSize: 25,
               cursor:"pointer",
             }}
-            variant={"h6"}>HippoCampus</Typography>
+            variant={"h6"}>C O D E</Typography>
         </div>
         <div style={{
           display: "flex"
