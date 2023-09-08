@@ -15,7 +15,7 @@ const mongoOptions = {
 
 app.use(cors({
   credentials : true,
-  origin : ["https://sameer-course.vercel.app", "http://localhost:5173"]
+  origin : [ "https://sameer-course.vercel.app", "http://localhost:5173" ]
 }))
 
 app.use(function(req,res,next){
@@ -33,7 +33,7 @@ const userRouter = require("./routes/user")
 
 app.use(express.json())
 app.use("/admin",adminRouter)
-// app.use("/user",userRouter)
+app.use("/user",userRouter)
 
 mongoose.connect(mongoUrl, mongoOptions);
 
