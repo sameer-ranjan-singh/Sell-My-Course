@@ -1,4 +1,4 @@
-![ScreenShot-app-Thumbnail](https://github.com/sameer-ranjan-singh/Sell-My-Course/assets/121953297/673cd921-c688-45c1-877f-8054e46df474)
+![ScreenShot Tool -20230909164325](https://github.com/sameer-ranjan-singh/Sell-My-Course/assets/121953297/36a84d8a-515d-4370-8c2d-5074d7c8802e)
 
 # SELL-MY-COURSE
 It is a online course creation and selling platform that connects instructors with learners. It empowers educators to create and share their courses, while providing a seamless learning experience for students. The platform is built to simplify the course creation process, making it easier for instructors to share their expertise with a global audience.
@@ -49,7 +49,7 @@ https://sameer-course.vercel.app/
 
 Must have in your System ( Node.js, MongoDB, npm).
 
-## Getting Started
+## GETTING STARTED
 
 ### Setting Up the BACKEND
 
@@ -90,7 +90,8 @@ npm install
 ```bash
 npm run dev || npm start
 ```
-## Contributing:
+
+## Contribution:
 I welcome contributions from the community to help improve this project. To contribute:
 
 - Fork the repository on GitHub.
@@ -98,7 +99,7 @@ I welcome contributions from the community to help improve this project. To cont
 ```bash
 #Create a new branch for your changes:
     git checkout -b feature/your-feature-name
-    ```
+```
 - Make your changes and commit them with clear, descriptive messages.
 - Push your changes to your GitHub repository.
 - Create a pull request (PR) from your branch to the main repository's branch.
