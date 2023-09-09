@@ -16,8 +16,8 @@ const mongoOptions = {
 app.use(cors({
   credentials : true,
   origin : [ "https://sameer-course.vercel.app",
-             "http://localhost:5173",
-             "https://sameer-user.vercel.app/" 
+              "https://sameer-user.vercel.app",
+              "http://localhost:5173",
             ]
 }))
 

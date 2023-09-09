@@ -6,6 +6,7 @@ const { User, Course } = require("../db/index.js")
 
 const router = express.Router()
 
+// Checking for backend working 
 router.get("/", async (req,res) => {
   res.status(200).send({
     message :"Hello from Render.com / sameer",
@@ -17,7 +18,8 @@ router.get("/me",authenticateJwt , (req , res) => {
       username: req.user.username 
     })
   })
-  
+
+// SIGNUP  
   router.post('/signup', (req, res) => {
     const { username, password } = req.body;
     function callback(user) {
@@ -34,7 +36,8 @@ router.get("/me",authenticateJwt , (req , res) => {
     }
     User.findOne({ username }).then(callback);
   });
-  
+
+// LOGIN  
   router.post('/login', async (req, res) => {
     const { username, password } = req.headers;
     const user = await User.findOne({ username, password });
@@ -46,11 +49,13 @@ router.get("/me",authenticateJwt , (req , res) => {
     }
   });
 
+// GET ALL PUBLISHED COURSES
   router.get('/courses', authenticateJwt, async (req, res) => {
     const courses = await Course.find({published: true});
     res.json({courses});
   });
-  
+
+// BUY SINGLE COURSE  
   router.post('/courses/:courseId', authenticateJwt, async (req, res) => {
     const course = await Course.findById(req.params.courseId);
     console.log(course);
@@ -69,6 +74,7 @@ router.get("/me",authenticateJwt , (req , res) => {
     }
   });
   
+// GET ALL USER PURCHASHED COURSES  
   router.get('/purchasedCourses', authenticateJwt, async (req, res) => {
     const user = await User.findOne({ username: req.user.username }).populate('purchasedCourses');
     if (user) {
@@ -77,7 +83,8 @@ router.get("/me",authenticateJwt , (req , res) => {
       res.status(403).json({ message: 'User not found' });
     }
   });
-  
+
+// GET SINGLE COURSE DETAILS   
   router.get("/course/:courseId",authenticateJwt, async (req,res)=>{
     const courseId = req.params.courseId ;
     const course = await Course.findById(courseId)
@@ -90,12 +97,5 @@ router.get("/me",authenticateJwt , (req , res) => {
     console.log(alreadyPurchased)
     res.json({course,alreadyPurchased})
   })
-
-
-  // router.get("/course/:courseId",authenticateJwt, async (req,res)=>{
-  //   const courseId = req.params.courseId ;
-  //   const course = await Course.findById(courseId)
-  //   res.json({course})
-  // })
 
   module.exports = router

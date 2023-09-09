@@ -28,7 +28,7 @@ function Intro(){
                 >Create Course
                 </button>
                 
-                <Link to="http://sameer-user.vercel.app" target="_blank" rel="noopener noreferrer">
+                <Link to="https://sameer-user.vercel.app" target="_blank" rel="noopener noreferrer">
                   <button className="mid-div-btn-s" >Explore Courses</button>
                </Link>
             </div>

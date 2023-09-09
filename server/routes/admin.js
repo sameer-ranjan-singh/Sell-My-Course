@@ -17,7 +17,8 @@ router.get("/me",authenticateJwt , (req , res) => {
       username: req.user.username 
     })
   })
-  
+
+// SIGNUP  
   router.post('/signup', (req, res) => {
     const { username, password } = req.body;
     function callback(admin) {
@@ -35,6 +36,7 @@ router.get("/me",authenticateJwt , (req , res) => {
     Admin.findOne({ username }).then(callback);
   });
   
+// LOGIN
   router.post('/login', async (req, res) => {
     const { username, password } = req.headers;
     const admin = await Admin.findOne({ username, password });
@@ -46,12 +48,14 @@ router.get("/me",authenticateJwt , (req , res) => {
     }
   });
   
+// CREATE COURSE  
   router.post('/courses', authenticateJwt, async (req, res) => {
     const course = new Course(req.body);
     await course.save();
     res.json({ message: 'Course created successfully', courseId: course.id });
   });
-  
+
+// EDIT COURSE
   router.put('/courses/:courseId', authenticateJwt, async (req, res) => {
     const course = await Course.findByIdAndUpdate(req.params.courseId, req.body, { new: true });
     if (course) {
@@ -61,17 +65,20 @@ router.get("/me",authenticateJwt , (req , res) => {
     }
   });
   
+// GET ALL COURSES
   router.get('/courses', authenticateJwt, async (req, res) => {
     const courses = await Course.find({});
     res.json({ courses });
   });
-  
+
+// GET SINGLE COURSE  
   router.get("/course/:courseId",authenticateJwt, async (req,res)=>{
     const courseId = req.params.courseId ;
     const course = await Course.findById(courseId)
     res.json({course})
   })
-  
+
+// DELETE A COURSE
   router.delete("/courses/:courseId", authenticateJwt, async (req,res) => {
     const courseId = req.params.courseId ;
     const deletedCourse = await Course.findByIdAndDelete(courseId, req.body, { new: true })

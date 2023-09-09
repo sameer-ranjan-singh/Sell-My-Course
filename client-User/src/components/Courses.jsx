@@ -51,11 +51,8 @@ if(courses.length === 0 ){
                 onClick={() => {
                     navigate("/purchasedCourses")
                 }}
-            >
-                <IconButton aria-label="fingerprint" color="success">
-                    <Fingerprint />
-                </IconButton>
-                My Courses
+               >
+                <Fingerprint  color="success" />My Courses
               </Button>
             </div>
 
