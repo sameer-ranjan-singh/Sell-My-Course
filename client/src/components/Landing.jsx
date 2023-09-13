@@ -40,7 +40,8 @@ function Landing(){
             letterSpacing: "0em",
             lineHeight: 1.1,
             textAlign: "center",
-        }}>"Good artists copy<br />Great Artists Steal"</Typography>
+        }}>Good Artists <span style={{color:"white"}}>Copy</span> <br />Great Artists  <span style={{color:"white"}}>STEAL</span></Typography>
+
         </div>
 
         <div style={{
@@ -115,7 +116,7 @@ function Landing(){
             letterSpacing: "0em",
             lineHeight: 1.1,
             textAlign: "center",
-        }}>"Good artists copy<br />Great Artists Steal"</Typography>
+        }}>Good Artists <span style={{color:"white"}}>Copy</span> <br />Great Artists  <span style={{color:"white"}}>STEAL</span></Typography>
         </div>
 
         <div style={{

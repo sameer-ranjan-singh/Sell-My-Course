@@ -83,7 +83,6 @@ justifyContent:'center'
                 })
                 const data =response.data
                 localStorage.setItem("token",data.token)
-                // window.location = "/courses"
                 setUser({
                     isLoading : false,
                     userEmail: username
@@ -92,10 +91,21 @@ justifyContent:'center'
             }}
             >Create Account</Button>
     </div>
+    <p style={{
+        margin:"10px 0px 0px 5px",
+        fontWeight:"bold",
+        textAlign:"center"
+    }}>Already have an account ? 
+        <span
+            style={{fontWeight:"bold",color:"blue",cursor:"pointer"}}
+            onClick={() => {
+            navigate("/signin")
+            }}>LogIn
+        </span>
+    </p>
 
 </Card>
 </div>
-
 
 </div>
 }

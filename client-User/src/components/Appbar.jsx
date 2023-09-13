@@ -1,33 +1,31 @@
-import { Typography } from "@mui/material"
-import Button from '@mui/material/Button';
+import { Typography } from "@mui/material";
+import Button from "@mui/material/Button";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from '@mui/material/Switch';
-import { styled } from '@mui/material/styles';
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Switch from "@mui/material/Switch";
+import { styled } from "@mui/material/styles";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { userState } from "../store/atoms/user";
 import { isUserLoading } from "../store/selectors/isUserLoading";
 import { userEmailState } from "../store/selectors/userEmail";
 import { Link } from "react-router-dom";
 
-
 function Appbar({}) {
   const location = useLocation();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-  const setUser = useSetRecoilState(userState)
-  const userLoading =  useRecoilValue(isUserLoading)
-  const userEmail =  useRecoilValue(userEmailState)
+  const setUser = useSetRecoilState(userState);
+  const userLoading = useRecoilValue(isUserLoading);
+  const userEmail = useRecoilValue(userEmailState);
 
-  if(userLoading){
-  return <></>
-}
+  if (userLoading) {
+    return <></>;
+  }
 
   if (userEmail) {
-   
     const handleDarkModeToggle = () => {
       setIsDarkMode((prevMode) => !prevMode);
       // Toggle body background color to black
@@ -38,178 +36,208 @@ function Appbar({}) {
       width: 62,
       height: 34,
       padding: 10,
-      
-      '& .MuiSwitch-switchBase': {
+
+      "& .MuiSwitch-switchBase": {
         margin: 1,
         padding: 0,
-        transform: 'translateX(6px)',
-        
-        '&.Mui-checked': {
-          color: '#fff',
-          transform: 'translateX(22px)',
-          
-          '& .MuiSwitch-thumb:before': {
+        transform: "translateX(6px)",
+
+        "&.Mui-checked": {
+          color: "#fff",
+          transform: "translateX(22px)",
+
+          "& .MuiSwitch-thumb:before": {
             backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
-              '#fff',
+              "#fff"
             )}" d="M4.2 2.5l-.7 1.8-1.8.7 1.8.7.7 1.8.6-1.8L6.7 5l-1.9-.7-.6-1.8zm15 8.3a6.7 6.7 0 11-6.6-6.6 5.8 5.8 0 006.6 6.6z"/></svg>')`,
           },
-          
-          '& + .MuiSwitch-track': {
+
+          "& + .MuiSwitch-track": {
             opacity: 1,
-            backgroundColor: theme.palette.mode === 'dark' ? '#8796A5' : '#93c422',
+            backgroundColor:
+              theme.palette.mode === "dark" ? "#8796A5" : "#93c422",
           },
         },
       },
-      '& .MuiSwitch-thumb': {
-        backgroundColor: theme.palette.mode === 'dark' ? '#003892' : '#001e3c',
+      "& .MuiSwitch-thumb": {
+        backgroundColor: theme.palette.mode === "dark" ? "#003892" : "#001e3c",
         width: 32,
         height: 32,
-        
-        '&:before': {
+
+        "&:before": {
           content: "''",
-          position: 'absolute',
-          width: '100%',
-          height: '100%',
+          position: "absolute",
+          width: "100%",
+          height: "100%",
           left: 0,
           top: 0,
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center',
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
           backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
-            '#fff',
+            "#fff"
           )}" d="M9.305 1.667V3.75h1.389V1.667h-1.39zm-4.707 1.95l-.982.982L5.09 6.072l.982-.982-1.473-1.473zm10.802 0L13.927 5.09l.982.982 1.473-1.473-.982-.982zM10 5.139a4.872 4.872 0 00-4.862 4.86A4.872 4.872 0 0010 14.862 4.872 4.872 0 0014.86 10 4.872 4.872 0 0010 5.139zm0 1.389A3.462 3.462 0 0113.471 10a3.462 3.462 0 01-3.473 3.472A3.462 3.462 0 016.527 10 3.462 3.462 0 0110 6.528zM1.665 9.305v1.39h2.083v-1.39H1.666zm14.583 0v1.39h2.084v-1.39h-2.084zM5.09 13.928L3.616 15.4l.982.982 1.473-1.473-.982-.982zm9.82 0l-.982.982 1.473 1.473.982-.982-1.473-1.473zM9.305 16.25v2.083h1.389V16.25h-1.39z"/></svg>')`,
         },
       },
-      '& .MuiSwitch-track': {
+      "& .MuiSwitch-track": {
         opacity: 1,
-        backgroundColor: theme.palette.mode === 'dark' ? '#8796A5' : '#aab4be',
+        backgroundColor: theme.palette.mode === "dark" ? "#8796A5" : "#aab4be",
         borderRadius: 20 / 2,
-        
       },
     }));
 
-    return <>
-    <div style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems:"center",
-        padding: "10px 10px 0px 30px",
-        backgroundColor: location.pathname === "/" ? "#000000" : "",
-      }}>
-
-        <div>
-          <Typography
-          onClick ={()=> {
-            navigate("/")
+    return (
+      <>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            padding: "10px 10px 0px 30px",
+            backgroundColor: location.pathname === "/" ? "#000000" : "",
           }}
-            variant={"h6"}
-            style={{ color: "#93c422", fontSize: 25, fontFamily: `"Gloock", "Gloock Placeholder", serif`,cursor:"pointer" }}>
-            C O D E</Typography>
-        </div>
-        <div style={{
-          display: "flex"
-        }}>
-
-          <div style={{
-            marginRight: 0
-          }}>
-            <FormControlLabel
-              control={<MaterialUISwitch sx={{ m: -2 }} 
-              checked={isDarkMode} onChange={handleDarkModeToggle}      
-              />}
-            />
-            <Link to="http://sameer-course.vercel.app" target="_blank" rel="noopener noreferrer">
-              <Button
-                variant={""}
-                style={{
-                  padding: "0px 5px 0px 0px",
-                  fontWeight: "bold",
-                  fontSize:"small",
-                  color: "#93c422",
-                }}
-                onClick={() => {
-                  localStorage.setItem("token", null)
-                  setUser({
-                    isLoading : false,
-                    userEmail: null
-                  })
-
-                  navigate("/")
-                }}
-              >Logout</Button>
-            </Link>
+        >
+          <div>
+            <Typography
+              onClick={() => {
+                navigate("/");
+              }}
+              variant={"h6"}
+              style={{
+                color: "#93c422",
+                fontSize: 25,
+                fontFamily: `"Gloock", "Gloock Placeholder", serif`,
+                cursor: "pointer",
+              }}
+            >
+              C O D E
+            </Typography>
           </div>
-        </div>
-      </div>
-    </>
-  }
- else{
-  return (
-    <>
-      <div style={{
-        display: "flex",
-        alignItems:"center",
-        justifyContent: "space-between",
-        padding: "10px 10px 0px 30px",
-        color: "#93c422",
-        backgroundColor: location.pathname === "/" ? "#000000" : "",
-      }}>
-
-        <div>
-          <Typography
-          onClick ={()=> {
-            navigate("/")
-          }}
+          <div
             style={{
-              fontFamily: `"Gloock", "Gloock Placeholder", serif`,
-              fontSize: 25,
-              cursor:"pointer",
+              display: "flex",
             }}
-            variant={"h6"}>C O D E</Typography>
+          >
+            <div
+              style={{
+                marginRight: 0,
+              }}
+            >
+              <FormControlLabel
+                control={
+                  <MaterialUISwitch
+                    sx={{ m: -2 }}
+                    checked={isDarkMode}
+                    onChange={handleDarkModeToggle}
+                  />
+                }
+              />
+              <Link
+                to="http://sameer-course.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button
+                  variant={""}
+                  style={{
+                    padding: "0px 5px 0px 0px",
+                    fontWeight: "bold",
+                    fontSize: "small",
+                    color: "#93c422",
+                  }}
+                  onClick={() => {
+                    localStorage.setItem("token", null);
+                    setUser({
+                      isLoading: false,
+                      userEmail: null,
+                    });
+
+                    navigate("/");
+                  }}
+                >
+                  Logout
+                </Button>
+              </Link>
+            </div>
+          </div>
         </div>
-        <div style={{
-          display: "flex"
-        }}>
-          <div style={{
-            marginRight: 4
-          }}>
-            <Button
-              // variant={"outlined"}
+      </>
+    );
+  } else {
+    return (
+      <>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            padding: "10px 10px 0px 30px",
+            color: "#93c422",
+            backgroundColor: location.pathname === "/" ? "#000000" : "",
+          }}
+        >
+          <div>
+            <Typography
               onClick={() => {
-                navigate("/signup")
+                navigate("/");
               }}
               style={{
-                // border: "1px solid #93c422",
                 fontFamily: `"Gloock", "Gloock Placeholder", serif`,
-                color: "#93c422",
-                fontWeight: "bold",
-
+                fontSize: 25,
+                cursor: "pointer",
               }}
-            >Sign up</Button>
+              variant={"h6"}
+            >
+              C O D E
+            </Typography>
           </div>
-          <div style={{
-            marginRight: 10
-          }}>
-            <Button
-              // variant={"outlined"}
-              onClick={() => {
-                navigate("/signin")
-              }}
+          <div
+            style={{
+              display: "flex",
+            }}
+          >
+            <div
               style={{
-                // border: "1px solid #93c422",
-                // fontFamily: `"Gloock", "Gloock Placeholder", serif`,
-                color: "#93c422",
-                fontFamily: `"Gloock", "Gloock Placeholder", serif`,
-                fontWeight: "bold",
-
+                marginRight: 4,
               }}
-            >Login</Button>
+            >
+              <Button
+                // variant={"outlined"}
+                onClick={() => {
+                  navigate("/signup");
+                }}
+                style={{
+                  fontFamily: `"Gloock", "Gloock Placeholder", serif`,
+                  color: "#93c422",
+                  fontWeight: "bold",
+                }}
+              >
+                Sign up
+              </Button>
+            </div>
+            <div
+              style={{
+                marginRight: 10,
+              }}
+            >
+              <Button
+                // variant={"outlined"}
+                onClick={() => {
+                  navigate("/signin");
+                }}
+                style={{
+                  color: "#93c422",
+                  fontFamily: `"Gloock", "Gloock Placeholder", serif`,
+                  fontWeight: "bold",
+                }}
+              >
+                Login
+              </Button>
+            </div>
           </div>
         </div>
-      </div>
-    </>
-  )
- }
-
+      </>
+    );
   }
+}
 
-export default Appbar
+export default Appbar;
