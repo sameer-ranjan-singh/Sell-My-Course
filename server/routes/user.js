@@ -3,8 +3,14 @@ const jwt = require('jsonwebtoken');
 const { SECRET } = require("../middleware/auth")
 const { authenticateJwt } = require("../middleware/auth")
 const { User, Course } = require("../db/index.js")
+const z= require("zod")
 
 const router = express.Router()
+
+let signupInputProp = z.object({
+  username : z.string().min(2).max(10),
+  password : z.string().min(2).max(10)
+})
 
 // Checking for backend working 
 router.get("/", async (req,res) => {
@@ -21,7 +27,18 @@ router.get("/me",authenticateJwt , (req , res) => {
 
 // SIGNUP  
   router.post('/signup', (req, res) => {
-    const { username, password } = req.body;
+    /* zod validation */ 
+    const parsedInput = signupInputProp.safeParse(req.body)
+    if(!parsedInput.success){
+       res.status(411).json({
+        error : parsedInput.error
+      })
+      return
+    } 
+    const username = parsedInput.data.username
+    const password = parsedInput.data.password
+
+    // const { username, password } = req.body;
     function callback(user) {
       if (user) {
         res.status(403).json({ message: 'User already exists' });
