@@ -1,9 +1,9 @@
-const express = require('express');
-const jwt = require('jsonwebtoken');
-const { SECRET } = require("../middleware/auth")
-const { authenticateJwt } = require("../middleware/auth")
-const { Admin , Course } = require("../db/index.js")
-const z= require("zod")
+import express from 'express';
+import jwt from 'jsonwebtoken';
+import { SECRET } from "../middleware/auth"
+import { authenticateJwt } from "../middleware/auth"
+import { Admin , Course } from "../db/index.js"
+import z from "zod"
 
 const router = express.Router()
 
@@ -109,4 +109,5 @@ router.get("/me",authenticateJwt , (req , res) => {
      }
   })
 
-  module.exports = router
+  export default router
+  // module.exports = router

@@ -1,11 +1,12 @@
 require('dotenv').config();
 
-const express = require("express")
+import express, {Request, Response, NextFunction } from "express"
 const app = express()
-const cors = require("cors")
-const mongoose = require("mongoose")
+import cors from "cors"
+import mongoose from "mongoose"
 const port = process.env.PORT || 3000
 const mongoUrl = process.env.MONGO_URL
+
 
 const mongoOptions = {
     useNewUrlParser: true,
@@ -21,9 +22,9 @@ app.use(cors({
             ]
 }))
 
-app.use(function(req,res,next){
-  res.header("Content-Type", "application/json;charseu=UTF-8")
-  res.header("Access-Control-Allow-Credentials", true)
+app.use(function(req:Request,res:Response,next:NextFunction){
+  res.header("Content-Type", "application/json;charset=UTF-8")
+  res.header("Access-Control-Allow-Credentials", "true")
   res.header(
     "Access-Control-Allow-Credentials",
      "Origin, X-requested-With, Content-Type, Accept"
@@ -31,13 +32,17 @@ app.use(function(req,res,next){
   next()
 })
 
-const adminRouter = require("./routes/admin")
-const userRouter = require("./routes/user")
+import adminRouter from "./routes/admin"
+import userRouter from "./routes/user"
 
 app.use(express.json())
 app.use("/admin",adminRouter)
 app.use("/user",userRouter)
 
-mongoose.connect(mongoUrl, mongoOptions);
+if(typeof mongoUrl === "string"){
+  console.error("Mongo URL is of type String");
+  mongoose.connect(mongoUrl, mongoOptions);
+  // process.exit(1)
+}
 
 app.listen(port, () => console.log(`Server is running on port ${port}`))
