@@ -1,10 +1,12 @@
 require('dotenv').config();
+const pm2Config = require('./ecosystem.config')
 
 const express = require("express")
 const app = express()
 const cors = require("cors")
 const mongoose = require("mongoose")
-const port = process.env.PORT || 3000
+const port = process.env.PM2_SERVE_PORT
+// const port = pm2Config.apps.env.PORT
 const mongoUrl = process.env.MONGO_URL
 
 const mongoOptions = {
