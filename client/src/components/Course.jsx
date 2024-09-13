@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
-import { Card, Typography } from "@mui/material"
-import {TextField, Button} from "@mui/material"
-import { useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { Card, Typography } from "@mui/material";
+import {TextField, Button} from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import LinearProgress from '@mui/material/LinearProgress';
@@ -10,9 +10,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
 import IconButton from '@mui/material/IconButton';
 import Fingerprint from '@mui/icons-material/Fingerprint';
-import axios from "axios"
+import axios from "axios";
 import { Base_URL } from "../config";
-
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
