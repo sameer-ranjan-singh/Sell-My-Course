@@ -5,8 +5,8 @@ const express = require("express")
 const app = express()
 const cors = require("cors")
 const mongoose = require("mongoose")
-const port = process.env.PM2_SERVE_PORT
-// const port = pm2Config.apps.env.PORT
+// const port = process.env.PM2_SERVE_PORT
+const port = pm2Config.apps[0].port
 const mongoUrl = process.env.MONGO_URL
 
 const mongoOptions = {
